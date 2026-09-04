@@ -1,4 +1,4 @@
-/* 全局样式 */
+
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +12,7 @@ body {
     line-height: 1.6;
 }
 
-/* 页眉 */
+
 header {
     background: linear-gradient(135deg, #4a90d9, #357abd);
     color: #fff;
