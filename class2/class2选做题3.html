@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>简单折叠示例</title>
+    <style>
+        details {
+            border: 1px solid gray;
+            padding: 10px;
+            width: 300px;
+        }
+        summary {
+            cursor: pointer; /* 鼠标变手型 */
+            font-weight: bold;
+        }
+        p { margin-top: 10px; color: #555; }
+    </style>
+</head>
+<body>
+
+    <!-- 默认关闭状态 -->
+    <details>
+        <summary>填写说明（默认关闭）</summary>
+        <p>1. 用户名不能为空<br>2. 密码至少6位</p>
+    </details>
+
+    <br>
+
+    <!-- 通过open默认展开状态 -->
+    <details open>
+        <summary>填写说明（默认展开）</summary>
+        <p>1. 用户名不能为空<br>2. 密码至少6位</p>
+    </details>
+
+</body>
+</html>
