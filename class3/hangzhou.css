@@ -97,6 +97,32 @@ body {
   line-height: 1.6;
 }
 
+/* ===== 出行提示：Flex 布局 ===== */
+.tip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.tip {
+  flex: 1;
+  min-width: 220px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.tip h3 {
+  color: #2e7d32;
+  margin-bottom: 6px;
+}
+
+.tip p {
+  font-size: 14px;
+  color: #666;
+}
+
 /* ===== 页脚 ===== */
 .footer {
   background: #4caf50;
