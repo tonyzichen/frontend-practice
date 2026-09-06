@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Microsoft YaHei", Arial, sans-serif;
+  background: #f4f4f4;
+  color: #333;
+}
+
+/* ===== 导航栏：Flex 布局 ===== */
+.header {
+  background: #4caf50;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.header h1 {
+  color: #fff;
+  font-size: 20px;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 15px;
+  font-size: 15px;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+/* ===== 横幅 ===== */
+.banner {
+  background: #e8f5e9;
+  text-align: center;
+  padding: 40px 16px;
+  margin-bottom: 20px;
+}
+
+.banner h2 {
+  color: #2e7d32;
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.banner p {
+  color: #555;
+}
+
+/* ===== 通用区块 ===== */
+.section {
+  max-width: 1000px;
+  margin: 0 auto 30px;
+  padding: 0 16px;
+}
+
+.section h2 {
+  text-align: center;
+  color: #2e7d32;
+  margin-bottom: 20px;
+}
+
+/* ===== 页脚 ===== */
+.footer {
+  background: #4caf50;
+  color: #fff;
+  text-align: center;
+  padding: 16px;
+  font-size: 14px;
+}
