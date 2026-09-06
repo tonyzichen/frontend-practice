@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>家乡杭州信息收集</title>
+    <!-- 引入外部CSS文件 -->
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <!-- 1. 语义化结构：header -->
+    <header>
+        <h1>家乡杭州信息收集系统</h1>
+        <nav>
+            <ul>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">杭州概况</a></li>
+                <li><a href="#">信息登记</a></li>
+                <li><a href="#">联系我们</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 2. 语义化结构：main 和 section -->
+    <main>
+        <section class="intro-section">
+            <h2>分享您所知道的杭州</h2>
+            <p>欢迎来到家乡杭州信息收集页面。杭州素有"人间天堂"的美誉，这里有西湖、灵隐寺、龙井茶，也有蓬勃发展的数字经济。无论您是本地人、新杭州人还是游客，都欢迎填写以下表单，分享您眼中的杭州。带 <span class="required">*</span> 的为必填项。</p>
+        </section>
+
+        <section class="form-section">
+            <form action="#" method="post">
+                <!-- 控件1：text + required -->
+                <div class="form-group">
+                    <label for="username">您的姓名/昵称 <span class="required">*</span></label>
+                    <input type="text" id="username" name="username" placeholder="请输入您的姓名或昵称" required>
+                </div>
+
+                <!-- 控件2：tel + pattern (校验属性) -->
+                <div class="form-group">
+                    <label for="phone">联系电话 <span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" placeholder="请输入11位手机号码" pattern="^1[3-9]\d{9}$" required>
+                </div>
+
+                <!-- 控件3：email -->
+                <div class="form-group">
+                    <label for="email">电子邮箱</label>
+                    <input type="email" id="email" name="email" placeholder="example@example.com">
+                </div>
+
+                <!-- 控件4：radio -->
+                <div class="form-group">
+                    <label>您与杭州的关系 <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <label for="relation-local"><input type="radio" id="relation-local" name="relation" value="local" required> 杭州本地人</label>
+                        <label for="relation-work"><input type="radio" id="relation-work" name="relation" value="work"> 在杭州工作/学习</label>
+                        <label for="relation-tourist"><input type="radio" id="relation-tourist" name="relation" value="tourist"> 曾到杭州旅游</label>
+                    </div>
+                </div>
+
+                <!-- 控件5：select -->
+                <div class="form-group">
+                    <label for="spot">最喜爱的杭州景点 <span class="required">*</span></label>
+                    <select id="spot" name="spot" required>
+                        <option value="">-- 请选择景点 --</option>
+                        <option value="westlake">西湖</option>
+                        <option value="lingyin">灵隐寺</option>
+                        <option value="xixi">西溪湿地</option>
+                        <option value="qiandao">千岛湖</option>
+                        <option value="songcheng">宋城</option>
+                        <option value="hefangstreet">河坊街</option>
+                        <option value="canal">京杭大运河</option>
+                        <option value="other">其他</option>
+                    </select>
+                </div>
+
+                <!-- 控件6：date -->
+                <div class="form-group">
+                    <label for="visit-date">最近一次到访杭州的日期 <span class="required">*</span></label>
+                    <input type="date" id="visit-date" name="visit_date" required>
+                </div>
+
+                <!-- 控件7：file -->
+                <div class="form-group">
+                    <label for="city-photo">杭州相关照片</label>
+                    <input type="file" id="city-photo" name="city_photo" accept="image/*">
+                </div>
+
+                <!-- 控件8：textarea + maxlength (校验属性) -->
+                <div class="form-group">
+                    <label for="description">想分享的杭州印象 <span class="required">*</span></label>
+                    <textarea id="description" name="description" rows="4" maxlength="300" placeholder="请分享您了解的杭州美食、风景、文化习俗或生活体验等" required></textarea>
+                    <small>最多可输入300个字符</small>
+                </div>
+
+                <!-- 控件9：checkbox -->
+                <div class="form-group checkbox-group">
+                    <label for="agree">
+                        <input type="checkbox" id="agree" name="agreement" required>
+                        我已阅读并同意《杭州家乡信息收集平台信息分享协议》 <span class="required">*</span>
+                    </label>
+                </div>
+
+                <!-- 提交按钮 -->
+                <div class="form-group">
+                    <button type="submit">提交信息</button>
+                </div>
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <!-- 3. 语义化结构：footer -->
+    <footer>
+        <p> 家乡杭州信息收集系统 </p>
+    </footer>
+</body>
+</html>

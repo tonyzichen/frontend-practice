@@ -29,7 +29,7 @@ body {
   margin: 0 auto;
   padding: 16px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 3fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, fr));
   gap: 16px;
 }
 
@@ -41,4 +41,7 @@ body {
 
 @media (min-width: 992px) {
   .course-card { padding: 24px; }
+}
+.card .card-title {
+  color: #0b5ed7;
 }
