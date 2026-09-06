@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>题目三：打印样式</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Microsoft YaHei", Arial, sans-serif;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    /* ===== 屏幕上显示的样式（和平时一样） ===== */
+    .header {
+      background: #4caf50;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .header h1 { color: #fff; font-size: 20px; }
+    .nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 15px;
+      font-size: 15px;
+    }
+
+    .banner {
+      background: #e8f5e9;
+      text-align: center;
+      padding: 40px 16px;
+      margin-bottom: 20px;
+    }
+    .banner h2 {
+      color: #2e7d32;
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+    .banner p { color: #555; }
+
+    .section {
+      max-width: 1000px;
+      margin: 0 auto 30px;
+      padding: 0 16px;
+    }
+    .section h2 {
+      text-align: center;
+      color: #2e7d32;
+      margin-bottom: 20px;
+    }
+    .card-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 16px;
+    }
+    .card h3 {
+      color: #2e7d32;
+      margin-bottom: 6px;
+    }
+    .card p {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    @media (min-width: 768px) {
+      .card-list { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .card-list { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .footer {
+      background: #4caf50;
+      color: #fff;
+      text-align: center;
+      padding: 16px;
+      font-size: 14px;
+    }
+
+    /* ===== 打印样式：只在打印/打印预览时生效 ===== */
+    @media print {
+      /* 1. 隐藏导航栏：纸上的链接点不了，导航没有意义 */
+      .header { display: none; }
+
+      /* 2. 隐藏页脚：版权信息打印时不需要 */
+      .footer { display: none; }
+
+      /* 3. 去掉背景色，文字改纯黑：省墨水，黑白打印机也更清晰 */
+      body { background: #fff; color: #000; }
+      .banner { background: #fff; }
+
+      /* 4. 卡片改单栏：纸张宽度固定，多栏卡片会太挤 */
+      .card-list { grid-template-columns: 1fr; }
+
+      /* 5. 卡片边框加深：浅灰 #ddd 打印出来几乎看不见 */
+      .card { border: 1px solid #999; }
+
+      /* 6. 卡片内部避免被分页截断：一张卡片不会被劈成两页 */
+      .card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <h1>诗画杭州</h1>
+    <nav class="nav">
+      <a href="#scenic">西湖胜景</a>
+      <a href="#tips">出行提示</a>
+    </nav>
+  </header>
+
+  <div class="banner">
+    <h2>上有天堂，下有杭州</h2>
+    <p>三面云山一面城，一湖碧水映千年</p>
+  </div>
+
+  <main>
+    <section id="scenic" class="section">
+      <h2>西湖胜景</h2>
+      <div class="card-list">
+        <div class="card">
+          <h3>🌊 西湖</h3>
+          <p>三面云山一面城，苏堤白堤横贯碧波，十景之首的柔波塔影。</p>
+        </div>
+        <div class="card">
+          <h3>🛕 灵隐寺</h3>
+          <p>东晋古刹，飞来峰造像与千年香火，禅意与山林相融。</p>
+        </div>
+        <div class="card">
+          <h3>🗼 雷峰塔</h3>
+          <p>因白娘子传说闻名天下，夕照之下塔影横斜，金光满湖。</p>
+        </div>
+        <div class="card">
+          <h3>🌾 西溪湿地</h3>
+          <p>一曲溪流一曲烟，摇橹船穿行芦苇深处，城市之肾的野趣。</p>
+        </div>
+        <div class="card">
+          <h3>🏮 河坊街</h3>
+          <p>南宋皇城根下的市井长街，百年老字号与市井烟火气。</p>
+        </div>
+        <div class="card">
+          <h3>🍵 龙井村</h3>
+          <p>狮峰山下茶田层叠，明前龙井的清香就源自这片山谷。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>诗画杭州 · 响应式页面练习</p>
+  </footer>
+
+</body>
+</html>

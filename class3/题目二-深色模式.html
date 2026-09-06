@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>题目二：深色模式</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* ===== 浅色主题（默认）：把颜色集中定义成变量 ===== */
+    :root {
+      --bg: #f4f4f4;          /* 页面背景 */
+      --card-bg: #ffffff;     /* 卡片背景 */
+      --text: #333333;        /* 正文颜色 */
+      --muted: #666666;       /* 次要文字 */
+      --green: #4caf50;       /* 主题绿（导航/页脚） */
+      --deep-green: #2e7d32;  /* 深绿（标题） */
+      --banner-bg: #e8f5e9;   /* 横幅背景 */
+    }
+
+    /* ===== 深色主题：跟随系统切换，只需覆盖变量值 ===== */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1b1f1c;
+        --card-bg: #2a2f2b;
+        --text: #e0e0e0;
+        --muted: #9a9a9a;
+        --green: #388e3c;
+        --deep-green: #81c784;
+        --banner-bg: #263228;
+      }
+    }
+
+    body {
+      font-family: "Microsoft YaHei", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* ===== 导航 ===== */
+    .header {
+      background: var(--green);
+      padding: 12px 20px;
+    }
+    .header h1 {
+      color: #fff;
+      font-size: 20px;
+    }
+
+    /* ===== 横幅 ===== */
+    .banner {
+      background: var(--banner-bg);
+      text-align: center;
+      padding: 40px 16px;
+      margin-bottom: 20px;
+    }
+    .banner h2 {
+      color: var(--deep-green);
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+    .banner p {
+      color: var(--muted);
+    }
+
+    /* ===== 卡片 ===== */
+    .section {
+      max-width: 1000px;
+      margin: 0 auto 30px;
+      padding: 0 16px;
+    }
+    .section h2 {
+      text-align: center;
+      color: var(--deep-green);
+      margin-bottom: 20px;
+    }
+    .card-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--muted);
+      border-radius: 6px;
+      padding: 16px;
+    }
+    .card h3 {
+      color: var(--deep-green);
+      margin-bottom: 6px;
+    }
+    .card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ===== 页脚 ===== */
+    .footer {
+      background: var(--green);
+      color: #fff;
+      text-align: center;
+      padding: 16px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <h1>诗画杭州</h1>
+  </header>
+
+  <div class="banner">
+    <h2>上有天堂，下有杭州</h2>
+    <p>三面云山一面城，一湖碧水映千年</p>
+  </div>
+
+  <main>
+    <section class="section">
+      <h2>西湖胜景</h2>
+      <div class="card-list">
+        <div class="card">
+          <h3>🌊 西湖</h3>
+          <p>三面云山一面城，苏堤白堤横贯碧波，十景之首的柔波塔影。</p>
+        </div>
+        <div class="card">
+          <h3>🛕 灵隐寺</h3>
+          <p>东晋古刹，飞来峰造像与千年香火，禅意与山林相融。</p>
+        </div>
+        <div class="card">
+          <h3>🗼 雷峰塔</h3>
+          <p>因白娘子传说闻名天下，夕照之下塔影横斜，金光满湖。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>诗画杭州 · 响应式页面练习</p>
+  </footer>
+
+</body>
+</html>
