@@ -72,6 +72,31 @@ body {
   margin-bottom: 20px;
 }
 
+/* ===== 卡片墙：Grid 布局，手机默认一列 ===== */
+.card-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.card h3 {
+  color: #2e7d32;
+  margin-bottom: 6px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+}
+
 /* ===== 页脚 ===== */
 .footer {
   background: #4caf50;
@@ -79,4 +104,18 @@ body {
   text-align: center;
   padding: 16px;
   font-size: 14px;
+}
+
+/* ===== 媒体查询：平板两列 ===== */
+@media (min-width: 768px) {
+  .card-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===== 媒体查询：电脑三列 ===== */
+@media (min-width: 1024px) {
+  .card-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
