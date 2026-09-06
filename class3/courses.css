@@ -3,7 +3,7 @@
 body {
   font-family: "Microsoft YaHei", sans-serif;
   margin: 0;
-  color: red;
+  color: #333;
 }
 
 .nav-wrap {
@@ -23,3 +23,22 @@ body {
 }
 
 .main-nav a { text-decoration: none; color: #121d9e; }
+
+.card-grid {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 3fr));
+  gap: 16px;
+}
+
+.course-card {
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+@media (min-width: 992px) {
+  .course-card { padding: 24px; }
+}
