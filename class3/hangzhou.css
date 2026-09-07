@@ -61,7 +61,7 @@ body {
 
 /* ===== 通用区块 ===== */
 .section {
-  max-width: 1000px;
+  max-width: 62.5rem; /* 1000 ÷ 16 = 62.5rem，相对单位 */
   margin: 0 auto 30px;
   padding: 0 16px;
 }
@@ -106,7 +106,7 @@ body {
 
 .tip {
   flex: 1;
-  min-width: 220px;
+  min-width: 13.75rem; /* 220 ÷ 16 = 13.75rem，相对单位 */
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 6px;
