@@ -12,19 +12,6 @@
       background: #f4f4f4;
       color: #333;
     }
-
-    /* ===== 窗口宽度指示器（仅为截图对比用） ===== */
-    #width-tip {
-      position: fixed;
-      top: 0;
-      right: 0;
-      background: #333;
-      color: #fff;
-      font-size: 12px;
-      padding: 4px 10px;
-      z-index: 999;
-    }
-
     /* ===== 导航 ===== */
     .header {
       background: #4caf50;
@@ -47,15 +34,11 @@
     }
     .banner h2 {
       color: #2e7d32;
-      /* 原来固定写法：font-size: 26px;
-         改为：最小24px，首选5vw，最大40px */
       font-size: clamp(24px, 5vw, 40px);
       margin-bottom: 10px;
     }
     .banner p {
       color: #555;
-      /* 原来固定写法：font-size: 16px;
-         改为：最小14px，首选2vw，最大18px */
       font-size: clamp(14px, 2vw, 18px);
     }
 
@@ -102,8 +85,6 @@
   </style>
 </head>
 <body>
-
-  <div id="width-tip">窗口宽度: --px</div>
 
   <header class="header">
     <h1>诗画杭州</h1>
