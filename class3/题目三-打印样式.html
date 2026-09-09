@@ -91,23 +91,12 @@
 
     /* ===== 打印样式：只在打印/打印预览时生效 ===== */
     @media print {
-      /* 1. 隐藏导航栏：纸上的链接点不了，导航没有意义 */
       .header { display: none; }
-
-      /* 2. 隐藏页脚：版权信息打印时不需要 */
       .footer { display: none; }
-
-      /* 3. 去掉背景色，文字改纯黑：省墨水，黑白打印机也更清晰 */
       body { background: #fff; color: #000; }
       .banner { background: #fff; }
-
-      /* 4. 卡片改单栏：纸张宽度固定，多栏卡片会太挤 */
       .card-list { grid-template-columns: 1fr; }
-
-      /* 5. 卡片边框加深：浅灰 #ddd 打印出来几乎看不见 */
       .card { border: 1px solid #999; }
-
-      /* 6. 卡片内部避免被分页截断：一张卡片不会被劈成两页 */
       .card { break-inside: avoid; }
     }
   </style>
