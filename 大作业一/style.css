@@ -1,0 +1,251 @@
+/* 页面基础样式 */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: #333;
+  background: #f7f7f7;
+  font-family: Arial, "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+/* 顶部导航 */
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 8%;
+  background: white;
+  border-bottom: 1px solid #ddd;
+}
+
+.navbar-brand {
+  color: #24727d;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 18px;
+}
+
+.nav-link {
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: #24727d;
+}
+
+/* 首页区域 */
+.hero {
+  min-height: 400px;
+  padding: 80px 10%;
+  color: white;
+  background: #3d6f75 url("images/hangzhou.jpeg") center / cover;
+}
+
+.hero-copy {
+  max-width: 600px;
+  padding: 25px;
+  background: rgba(0, 0, 0, .45);
+}
+
+.hero h1 {
+  margin: 0 0 16px;
+  font-size: 42px;
+}
+
+.hero p {
+  font-size: 17px;
+}
+
+.eyebrow {
+  color: #b84f5c;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.hero .eyebrow {
+  color: #ffd7dd;
+}
+
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 4px;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #b84f5c;
+}
+
+.btn-success {
+  background: #5d8b56;
+}
+
+/* 通用内容区域 */
+.section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 50px 20px;
+}
+
+.section-heading {
+  margin-bottom: 25px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: #24727d;
+}
+
+.share-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.overview-grid {
+  display: block;
+}
+
+.overview-text p,
+.scenic-card p,
+.food-list p {
+  color: #666;
+}
+
+/* 表格、卡片和表单 */
+.city-table {
+  width: 100%;
+  margin-top: 30px;
+  border-collapse: collapse;
+  background: white;
+}
+
+.city-table th,
+.city-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.city-table th {
+  color: white;
+  background: #24727d;
+}
+
+.card-grid,
+.food-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.scenic-card,
+.food-list article,
+.hangzhou-form {
+  padding: 18px;
+  border: 1px solid #ddd;
+  background: white;
+}
+
+.scenic-card h3,
+.food-list h3 {
+  margin-top: 0;
+  color: #24727d;
+}
+
+.food-section {
+  max-width: none;
+  background: #eaf3ef;
+}
+
+.form-row {
+  margin-bottom: 16px;
+}
+
+.form-row label,
+.form-row legend {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+.form-control,
+.form-select,
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  font: inherit;
+}
+
+.choice {
+  margin-right: 12px;
+}
+
+.agree {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.site-footer {
+  padding: 20px;
+  color: white;
+  text-align: center;
+  background: #315b61;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+/* 平板和手机 */
+@media (max-width: 700px) {
+  .page-nav,
+  .nav-links {
+    display: block;
+  }
+
+  .nav-links {
+    margin-top: 10px;
+  }
+
+  .nav-link {
+    display: inline-block;
+    margin-right: 12px;
+  }
+
+  .share-section,
+  .card-grid,
+  .food-list {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: 50px 20px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+}
