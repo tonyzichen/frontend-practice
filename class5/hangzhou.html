@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>杭州游记收藏管理</title>
+  <style>
+    :root { --ink: #17324d; --muted: #64748b; --line: #d9e3ea; --teal: #087f8c; --gold: #e5a93d; --paper: #f7fbfc; --danger: #c2413a; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: linear-gradient(135deg, #eaf6f4, #fffaf1); font: 15px/1.6 system-ui, -apple-system, "PingFang SC", sans-serif; }
+    main { width: min(1100px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 60px; }
+    header { display: flex; justify-content: space-between; gap: 24px; align-items: end; margin-bottom: 28px; }
+    h1, h2, p { margin: 0; } h1 { font-size: clamp(28px, 5vw, 52px); letter-spacing: 0; line-height: 1.1; }
+    .subtitle { color: var(--muted); margin-top: 10px; }
+    .badge { color: var(--teal); border: 1px solid #9bd1d0; padding: 8px 12px; border-radius: 6px; white-space: nowrap; background: #f4fffe; }
+    .panel { background: rgba(255,255,255,.88); border: 1px solid var(--line); border-radius: 8px; padding: 22px; box-shadow: 0 12px 30px rgba(23,50,77,.07); }
+    .form-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr 100px 1fr auto; gap: 12px; align-items: end; }
+    label { display: grid; gap: 5px; color: var(--muted); font-size: 13px; }
+    input, select, button { min-height: 40px; border: 1px solid #bfd0d8; border-radius: 5px; padding: 8px 10px; font: inherit; background: #fff; }
+    input:focus, select:focus { outline: 2px solid #94d7d2; border-color: var(--teal); }
+    button { cursor: pointer; color: #fff; background: var(--teal); border-color: var(--teal); font-weight: 600; }
+    button.secondary { color: var(--teal); background: #effafa; }
+    button.danger { color: var(--danger); background: #fff6f5; border-color: #e8aaa5; }
+    .toolbar { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin: 22px 0 12px; }
+    .search { width: min(360px, 100%); } .actions { display: flex; gap: 8px; }
+    .message { min-height: 24px; color: var(--danger); margin-top: 8px; }
+    .table-wrap { overflow-x: auto; } table { width: 100%; border-collapse: collapse; min-width: 700px; }
+    th, td { text-align: left; padding: 13px 10px; border-bottom: 1px solid var(--line); } th { color: var(--muted); font-size: 13px; }
+    .rating { color: #a56800; font-weight: 700; } .row-actions { display: flex; gap: 7px; } .row-actions button { min-height: 32px; padding: 4px 9px; font-size: 13px; }
+    .empty { text-align: center; color: var(--muted); padding: 30px; }
+    .research { margin-top: 22px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .research article { border-top: 3px solid var(--gold); padding-top: 12px; } .research h2 { font-size: 17px; margin-bottom: 6px; } .research p { color: var(--muted); font-size: 13px; }
+    @media (max-width: 850px) { .form-grid { grid-template-columns: repeat(2, 1fr); } .form-grid label:first-child { grid-column: span 2; } .form-grid button { grid-column: span 2; } header { align-items: start; flex-direction: column; } }
+    @media (max-width: 600px) { main { width: min(100% - 20px, 1100px); padding-top: 24px; } .panel { padding: 15px; } .toolbar { align-items: stretch; flex-direction: column; } .search { width: 100%; } .research { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div><p class="badge">West Lake · City Notes</p><h1>杭州游记收藏</h1><p class="subtitle">把走过的桥、看过的山水，整理成一份可持续更新的城市清单。</p></div>
+      <p id="count-summary" class="subtitle">共 0 条记录</p>
+    </header>
+    <section class="panel">
+      <form id="place-form">
+        <div class="form-grid">
+          <label>地点名称<input id="place-name" required maxlength="30" placeholder="例如：西湖断桥"></label>
+          <label>区域<input id="place-area" required maxlength="20" placeholder="例如：西湖区"></label>
+          <label>类型<select id="place-type"><option>自然风光</option><option>人文古迹</option><option>美食探店</option><option>城市漫步</option></select></label>
+          <label>评分<input id="place-rating" required type="number" min="0" max="5" step="0.1" placeholder="4.8"></label>
+          <label>一句记录<input id="place-note" maxlength="60" placeholder="春风拂面，适合慢慢走"></label>
+          <button id="submit-button" type="submit">添加收藏</button>
+        </div>
+        <p id="form-message" class="message" role="alert" aria-live="polite"></p>
+      </form>
+    </section>
+    <section class="panel" style="margin-top:18px">
+      <div class="toolbar"><input id="search-input" class="search" type="search" placeholder="查询地点、区域或类型"><div class="actions"><button id="export-button" class="secondary" type="button">导出 JSON</button><button id="clear-button" class="danger" type="button">清空全部</button></div></div>
+      <div class="table-wrap"><table><thead><tr><th>地点</th><th>区域</th><th>类型</th><th>评分</th><th>游记摘录</th><th>操作</th></tr></thead><tbody id="place-list"></tbody></table></div>
+    </section>
+    <section class="research">
+      <article><h2>事件委托研究</h2><p>列表只在 tbody 上绑定一个 click 监听器，通过 closest 识别编辑和删除按钮。相比每行分别绑定，记录数量增长时监听器仍保持 1 个，适合动态列表。</p></article>
+      <article><h2>数据导出研究</h2><p>点击导出后将当前数组 JSON.stringify，再用 Blob 创建文件对象与 URL.createObjectURL 生成临时下载地址，触发下载后释放 URL。</p></article>
+      <article><h2>存储容错研究</h2><p>localStorage 容量受浏览器和站点策略限制。写入放在 try…catch 中，捕获 QuotaExceededError 等异常并把友好提示显示在页面上。</p></article>
+    </section>
+  </main>
+  <script src="hangzhou.js"></script>
+</body>
+</html>
