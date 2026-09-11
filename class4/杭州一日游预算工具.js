@@ -51,7 +51,68 @@ function sortData(list) {
   });
 }
 
-console.log('清洗后：', cleanData(costs));
-console.log('合法数据：', getValidData(cleanData(costs)));
-console.log('总消费：', getTotal(getValidData(cleanData(costs))));
-console.log('排序后：', sortData(getValidData(cleanData(costs))));
+// 生成输出文字。
+function makeReport(budgetText, list) {
+  const budget = getNumber(budgetText);
+  if (!Number.isFinite(budget) || budget <= 0) {
+    return '预算输入错误，请输入大于0的数字，例如300';
+  }
+
+  const cleanedData = cleanData(list);
+  const validData = getValidData(cleanedData);
+  const invalidCount = cleanedData.length - validData.length;
+  const total = getTotal(validData);
+  const sortedData = sortData(validData);
+  const lines = sortedData.map(function (item) {
+    return item.category + '：' + item.place + '，' + item.amount.toFixed(2) + '元';
+  });
+
+  let result = '杭州一日游消费报告\n';
+  result += '预算：' + budget.toFixed(2) + '元\n';
+  result += '总消费：' + total.toFixed(2) + '元\n';
+  result += total > budget
+    ? '超出预算：' + (total - budget).toFixed(2) + '元\n'
+    : '剩余预算：' + (budget - total).toFixed(2) + '元\n';
+  result += '\n消费明细（类别、金额双排序）：\n' + lines.join('\n');
+  result += '\n\n已忽略非法记录：' + invalidCount + '条';
+  return result;
+}
+
+// for循环和reduce完成同一个统计，用于性能实验。
+function totalByFor(list) {
+  let total = 0;
+  for (let i = 0; i < list.length; i++) {
+    total += list[i].amount;
+  }
+  return total;
+}
+
+function totalByReduce(list) {
+  return list.reduce(function (total, item) {
+    return total + item.amount;
+  }, 0);
+}
+
+// 直接设置预算，打开网页时不会弹出输入框。
+const budget = '300元';
+const cleanedData = cleanData(costs);
+const validData = getValidData(cleanedData);
+const report = makeReport(budget, costs);
+
+console.log(report);
+document.querySelector('#output').textContent = report;
+
+// sort结论：返回负数时a在前，正数时b在前，0表示顺序不变。
+console.log('sort研究：先按类别，再按金额从高到低。');
+
+// 性能实验：实际耗时会因电脑和浏览器不同而不同。
+const testData = [];
+for (let i = 0; i < 10000; i++) {
+  testData.push(validData[i % validData.length]);
+}
+console.time('for循环');
+console.log('for结果：', totalByFor(testData));
+console.timeEnd('for循环');
+console.time('reduce');
+console.log('reduce结果：', totalByReduce(testData));
+console.timeEnd('reduce');
