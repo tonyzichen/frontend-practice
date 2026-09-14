@@ -6,9 +6,31 @@ const ratingInput = document.querySelector('#place-rating');
 const list = document.querySelector('#place-list');
 const tip = document.querySelector('#tip');
 const filters = document.querySelector('#filters');
+const exportButton = document.querySelector('#export-button');
 
-let places = [];
+const STORAGE_KEY = 'hangzhou-place-notes-v1';
+let places = loadPlaces();
 let currentFilter = 'all';
+
+function loadPlaces() {
+  try {
+    const savedPlaces = localStorage.getItem(STORAGE_KEY);
+    return savedPlaces ? JSON.parse(savedPlaces) : [];
+  } catch (error) {
+    tip.textContent = '读取本地数据失败，已使用空白清单。';
+    return [];
+  }
+}
+
+function savePlaces() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(places));
+    return true;
+  } catch (error) {
+    tip.textContent = '保存失败：浏览器本地存储空间不足，请导出数据后清理空间。';
+    return false;
+  }
+}
 
 function render() {
   list.replaceChildren();
@@ -64,6 +86,7 @@ form.addEventListener('submit', (event) => {
   }
 
   places.push({ id: `place-${Date.now()}`, name, area, type: typeInput.value, rating, status: 'want' });
+  if (!savePlaces()) return;
   form.reset();
   tip.textContent = '';
   render();
@@ -81,6 +104,7 @@ list.addEventListener('click', (event) => {
   if (button.dataset.action === 'delete') {
     places = places.filter((place) => place.id !== button.dataset.id);
   }
+  savePlaces();
   render();
 });
 
@@ -90,6 +114,17 @@ filters.addEventListener('click', (event) => {
   currentFilter = button.dataset.filter;
   filters.querySelectorAll('button').forEach((item) => item.classList.toggle('active', item === button));
   render();
+});
+
+exportButton.addEventListener('click', () => {
+  const blob = new Blob([JSON.stringify(places, null, 2)], { type: 'application/json;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'hangzhou-place-notes.json';
+  link.click();
+  URL.revokeObjectURL(url);
+  tip.textContent = '杭州地点数据已导出为 JSON 文件。';
 });
 
 render();

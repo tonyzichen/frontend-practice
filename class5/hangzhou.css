@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 760px;
+  margin: 30px auto;
+  padding: 0 16px;
+  background: #f5f8f8;
+  color: #17324d;
+  font: 16px/1.6 Arial, "PingFang SC", sans-serif;
+}
+
+form,
+.list-panel {
+  margin-top: 18px;
+  padding: 18px;
+  background: #ffffff;
+  border: 1px solid #cfdedd;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+label {
+  display: grid;
+  gap: 4px;
+}
+
+input,
+select,
+button {
+  padding: 8px;
+  border: 1px solid #aabfbd;
+  font: inherit;
+}
+
+button {
+  margin-top: 12px;
+  cursor: pointer;
+  color: #ffffff;
+  background: #087f8c;
+}
+
+.tip {
+  min-height: 24px;
+  color: #b42318;
+}
+
+#filters {
+  margin: 12px 0;
+}
+
+#filters button,
+td button {
+  margin: 0 6px 0 0;
+  color: #17324d;
+  background: #e7f2f1;
+}
+
+#filters button.active {
+  color: #ffffff;
+  background: #087f8c;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #dce8e6;
+}
+
+.empty {
+  text-align: center;
+  color: #61758a;
+}
+
+@media (max-width: 560px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
