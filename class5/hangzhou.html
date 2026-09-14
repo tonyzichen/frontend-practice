@@ -23,8 +23,13 @@
 
   <section class="list-panel">
     <h2>我的杭州清单</h2>
+    <div id="filters">
+      <button class="active" type="button" data-filter="all">全部</button>
+      <button type="button" data-filter="want">想去</button>
+      <button type="button" data-filter="visited">已打卡</button>
+    </div>
     <table>
-      <thead><tr><th>地点</th><th>区域</th><th>类型</th><th>评分</th></tr></thead>
+      <thead><tr><th>地点</th><th>区域</th><th>类型</th><th>评分</th><th>状态</th><th>操作</th></tr></thead>
       <tbody id="place-list"></tbody>
     </table>
   </section>
