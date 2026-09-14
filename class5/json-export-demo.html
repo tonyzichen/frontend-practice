@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON 导出演示</title>
+  <style>body { max-width: 640px; margin: 32px auto; font: 16px/1.6 Arial, "PingFang SC", sans-serif; } button { padding: 9px 14px; } pre { padding: 12px; background: #f3f6f6; }</style>
+</head>
+<body>
+  <h1>杭州地点 JSON 导出</h1>
+  <p>点击按钮后，浏览器会下载 <code>hangzhou-places.json</code>。</p>
+  <button id="export-button" type="button">导出 JSON</button>
+  <p id="message"></p>
+  <pre id="preview"></pre>
+
+  <script>
+    const places = [
+      { name: '西湖断桥', area: '西湖区', rating: 4.9 },
+      { name: '河坊街', area: '上城区', rating: 4.6 }
+    ];
+    const preview = document.querySelector('#preview');
+    const message = document.querySelector('#message');
+    preview.textContent = JSON.stringify(places, null, 2);
+
+    document.querySelector('#export-button').addEventListener('click', () => {
+      const blob = new Blob([JSON.stringify(places, null, 2)], { type: 'application/json;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'hangzhou-places.json';
+      link.click();
+      URL.revokeObjectURL(url);
+      message.textContent = '导出成功：请在浏览器下载列表或下载文件夹中查看文件。';
+    });
+  </script>
+</body>
+</html>

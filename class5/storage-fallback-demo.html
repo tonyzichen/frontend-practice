@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>localStorage 容错演示</title>
+  <style>body { max-width: 640px; margin: 32px auto; font: 16px/1.6 Arial, "PingFang SC", sans-serif; } button { padding: 9px 14px; margin-right: 8px; } #message { min-height: 26px; color: #b42318; }</style>
+</head>
+<body>
+  <h1>localStorage 容错演示</h1>
+  <p>测试会逐步把一个测试键写大，直到浏览器拒绝写入；完成后可清除测试数据。</p>
+  <button id="test-button" type="button">开始容量测试</button>
+  <button id="clear-button" type="button">清除测试数据</button>
+  <p id="message"></p>
+
+  <script>
+    const TEST_KEY = 'quota-test-only';
+    const message = document.querySelector('#message');
+
+    document.querySelector('#test-button').addEventListener('click', () => {
+      try {
+        for (let size = 1; size <= 10; size += 1) {
+          const text = 'x'.repeat(size * 1024 * 1024);
+          localStorage.setItem(TEST_KEY, text);
+        }
+        message.textContent = '测试完成：当前浏览器允许写入 10MB 测试数据。';
+      } catch (error) {
+        message.textContent = `已捕获存储异常：${error.name}。页面没有崩溃。`;
+      }
+    });
+
+    document.querySelector('#clear-button').addEventListener('click', () => {
+      localStorage.removeItem(TEST_KEY);
+      message.textContent = '已清除 quota-test-only 测试数据。';
+    });
+  </script>
+</body>
+</html>

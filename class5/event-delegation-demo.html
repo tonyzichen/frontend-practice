@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件委托演示</title>
+  <style>
+    body { max-width: 640px; margin: 32px auto; font: 16px/1.6 Arial, "PingFang SC", sans-serif; }
+    input, button { padding: 8px; margin: 4px; } li { margin: 8px 0; } .done { color: #777; text-decoration: line-through; } #result { color: #087f8c; }
+  </style>
+</head>
+<body>
+  <h1>事件委托演示</h1>
+  <p>当前只给列表父元素 ul 绑定了 <strong>1 个</strong> click 监听器。</p>
+  <input id="task-input" placeholder="输入杭州地点，例如西湖">
+  <button id="add-button" type="button">添加地点</button>
+  <p id="result">已添加 0 条地点。</p>
+  <ul id="task-list"></ul>
+
+  <script>
+    const input = document.querySelector('#task-input');
+    const addButton = document.querySelector('#add-button');
+    const list = document.querySelector('#task-list');
+    const result = document.querySelector('#result');
+    let tasks = [];
+
+    function render() {
+      list.replaceChildren();
+      tasks.forEach((task) => {
+        const item = document.createElement('li');
+        item.className = task.done ? 'done' : '';
+        const text = document.createElement('span');
+        text.textContent = task.name;
+        const doneButton = document.createElement('button');
+        doneButton.dataset.action = 'done';
+        doneButton.dataset.id = task.id;
+        doneButton.textContent = task.done ? '取消打卡' : '标记打卡';
+        const deleteButton = document.createElement('button');
+        deleteButton.dataset.action = 'delete';
+        deleteButton.dataset.id = task.id;
+        deleteButton.textContent = '删除';
+        item.append(text, doneButton, deleteButton);
+        list.appendChild(item);
+      });
+      result.textContent = `已添加 ${tasks.length} 条地点，列表监听器数量始终为 1 个。`;
+    }
+
+    addButton.addEventListener('click', () => {
+      const name = input.value.trim();
+      if (!name) return;
+      tasks.push({ id: Date.now(), name, done: false });
+      input.value = '';
+      render();
+    });
+
+    list.addEventListener('click', (event) => {
+      const button = event.target.closest('button[data-action]');
+      if (!button) return;
+      if (button.dataset.action === 'done') {
+        tasks = tasks.map((task) => task.id === Number(button.dataset.id) ? { ...task, done: !task.done } : task);
+      }
+      if (button.dataset.action === 'delete') {
+        tasks = tasks.filter((task) => task.id !== Number(button.dataset.id));
+      }
+      render();
+    });
+
+    render();
+  </script>
+</body>
+</html>
