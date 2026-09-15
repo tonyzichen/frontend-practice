@@ -12,16 +12,22 @@
   <button id="test-button" type="button">开始容量测试</button>
   <button id="clear-button" type="button">清除测试数据</button>
   <p id="message"></p>
+  <p id="logStart"></p>
+  <p id="logFinish"></p>
 
   <script>
     const TEST_KEY = 'quota-test-only';
     const message = document.querySelector('#message');
+    const logStart = document.querySelector('#logStart');
+    const logFinish = document.querySelector('#logFinish');
 
     document.querySelector('#test-button').addEventListener('click', () => {
       try {
         for (let size = 1; size <= 10; size += 1) {
           const text = 'x'.repeat(size * 1024 * 1024);
+          logStart.textContent = `正在写入 ${size} MB 数据...`;
           localStorage.setItem(TEST_KEY, text);
+          logFinish.textContent = `已写入 ${size} MB 数据。`;
         }
         message.textContent = '测试完成：当前浏览器允许写入 10MB 测试数据。';
       } catch (error) {
