@@ -23,8 +23,10 @@
 
     document.querySelector('#test-button').addEventListener('click', () => {
       try {
-        for (let size = 1; size <= 10; size += 1) {
-          const text = 'x'.repeat(size * 1024 * 1024);
+        for (let size = 1; size <= 1000; size += 1) {
+           // localStorage的长度包括key和value的长度，所以要减去key的长度
+          const text = 'x'.repeat(size * 1024 * 1024 - TEST_KEY.length);
+
           logStart.textContent = `正在写入 ${size} MB 数据...`;
           localStorage.setItem(TEST_KEY, text);
           logFinish.textContent = `已写入 ${size} MB 数据。`;
