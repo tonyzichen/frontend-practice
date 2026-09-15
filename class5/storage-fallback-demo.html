@@ -35,25 +35,74 @@
 
   <script>
     const TEST_KEY = 'quota-test-only';
+    const N = 10000;
     const message = document.querySelector('#message');
     const logStart = document.querySelector('#logStart');
     const logFinish = document.querySelector('#logFinish');
 
     document.querySelector('#test-button').addEventListener('click', () => {
       try {
-        for (let size = 1; size <= 1000; size += 1) {
-           // localStorage的长度包括key和value的长度，所以要减去key的长度
-          const text = 'x'.repeat(size * 1024 * 1024 - TEST_KEY.length);
+          for (let size = 1; size <= N; size += 1) {
+            // localStorage的存储长度包括key和value的长度，所以要减去key的长度
+            const text = 'x'.repeat(size * 1024 * 1024 - TEST_KEY.length);
 
-          logStart.textContent = `正在写入 ${size} MB 数据...`;
-          localStorage.setItem(TEST_KEY, text);
-          logFinish.textContent = `已写入 ${size} MB 数据。`;
+            logStart.textContent = `正在写入 ${size} MB 数据...`;
+            localStorage.setItem(TEST_KEY, text);
+            // 如果写入失败，下面这一句不会执行
+            logFinish.textContent = `已写入 ${size} MB 数据。`;
+          }
+          message.textContent = `测试完成：当前浏览器允许写入 ${N}MB 测试数据。`;
+        } catch (error) {
+          message.textContent = `已捕获存储异常：${error.name}。页面没有崩溃。`;
         }
-        message.textContent = '测试完成：当前浏览器允许写入 10MB 测试数据。';
-      } catch (error) {
-        message.textContent = `已捕获存储异常：${error.name}。页面没有崩溃。`;
-      }
+
+
+        // for (let size = 1; size <= N; size += 1) {
+        //      // localStorage的长度包括key和value的长度，所以要减去key的长度
+        //     const text = 'x'.repeat(size * 1024 *10);
+
+        //     logStart.textContent = `正在写入 ${size*10} KB 数据...`;
+        //     localStorage.setItem(TEST_KEY, text);
+        //     logFinish.textContent = `已写入 ${size*10} KB 数据。`;
+        //   }
+        //   message.textContent = `测试完成：当前浏览器允许写入 ${N*10}KB 测试数据。`;
+
+
+        // for (let i = 1; i <= 5 * 1024 * 1024; i += 1) {
+        //   // localStorage的长度包括key和value的长度，所以要减去key的长度
+        //   const text = 'x'.repeat(size - i);
+
+        //   logStart.textContent = `正在写入 ${size * 10} KB 数据...`;
+        //   localStorage.setItem(TEST_KEY, text);
+        //   logFinish.textContent = `已写入 ${size * 10} KB 数据。`;
+        // }
+        // message.textContent = `测试完成：当前浏览器允许写入 ${N * 10}KB 测试数据。`;
+
+        // } catch (error) {
+        //   message.textContent = `已捕获存储异常：${error.name}。页面没有崩溃。`;
+        // }
     });
+
+
+    // document.querySelector('#test-button').addEventListener('click', () => {
+    //   let size ;
+    //   for (let i = 1; i <= 5 * 1024 * 1024; i += 1) {
+    //     try {
+
+    //       size = 5 * 1024 * 1024 - i;
+    //       const text = 'x'.repeat(size);
+
+    //       logStart.textContent = `正在写入 ${size}  数据...`;
+    //       localStorage.setItem(TEST_KEY, text);
+    //       logFinish.textContent = `已写入 ${size}  数据。`;
+
+    //       break; // 成功写入后退出循环
+    //     } catch (error) {
+    //       message.textContent = `已捕获存储异常：${error.name}。页面没有崩溃。`;
+    //     }
+    //   }
+    //   message.textContent = `测试完成：当前浏览器允许写入 ${size} 测试数据。`;
+    // });
 
     document.querySelector('#clear-button').addEventListener('click', () => {
       localStorage.removeItem(TEST_KEY);
