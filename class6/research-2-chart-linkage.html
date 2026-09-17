@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>独立研究二 图表联动</title>
+  <link href="libs/bootstrap.min.css" rel="stylesheet">
+  <style>.chart-box { height: 380px; }</style>
+</head>
+<body class="container py-4">
+  <h1 class="h3">独立研究二：图表联动</h1>
+  <p class="text-muted">点击左侧柱状图中任意柱子，右侧折线图会只保留该品类。</p>
+  <p id="status" class="alert alert-info">加载中...</p>
+  <p id="selected" class="fw-semibold"></p>
+  <button id="reset-button" class="btn btn-outline-secondary btn-sm mb-3">显示全部品类</button>
+
+  <section class="row g-3">
+    <div class="col-lg-6"><div id="bar-chart" class="chart-box"></div></div>
+    <div class="col-lg-6"><div class="chart-box"><canvas id="line-chart"></canvas></div></div>
+  </section>
+
+  <script src="libs/jquery-3.7.1.min.js"></script>
+  <script src="libs/echarts.min.js"></script>
+  <script src="libs/chart.umd.js"></script>
+  <script>
+    let booksData;
+    let lineChart;
+    const barChart = echarts.init(document.querySelector('#bar-chart'));
+
+    const renderLine = (series) => {
+      if (lineChart) lineChart.destroy();
+      lineChart = new Chart(document.querySelector('#line-chart'), {
+        type: 'line',
+        data: {
+          labels: booksData.months,
+          datasets: series.map(s => ({ label: s.category, data: s.counts, borderWidth: 2, tension: 0.2 }))
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { title: { display: true, text: '借阅趋势（单位：册）' } }
+        }
+      });
+    };
+
+    const selectCategory = (category) => {
+      const selectedSeries = booksData.series.filter(s => s.category === category);
+      renderLine(selectedSeries);
+      $('#selected').text('当前高亮品类：' + category + '（点击“显示全部品类”可恢复）');
+    };
+
+    const loadData = async () => {
+      try {
+        const response = await fetch('data/books.json');
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        booksData = await response.json();
+        barChart.setOption({
+          title: { text: '点击任意柱子选择品类', left: 'center' },
+          tooltip: { trigger: 'axis' },
+          legend: { bottom: 0 },
+          xAxis: { type: 'category', data: booksData.months },
+          yAxis: { name: '册', min: 0 },
+          series: booksData.series.map(s => ({ name: s.category, type: 'bar', data: s.counts }))
+        });
+        renderLine(booksData.series);
+        $('#status').removeClass('alert-info').addClass('alert-success').text('加载完成：请点击柱状图。');
+      } catch (error) {
+        $('#status').removeClass('alert-info').addClass('alert-danger').text('加载失败：' + error.message);
+      }
+    };
+
+    barChart.on('click', params => selectCategory(params.seriesName));
+    $('#reset-button').on('click', () => {
+      renderLine(booksData.series);
+      $('#selected').text('当前显示：全部品类');
+    });
+    window.addEventListener('resize', () => barChart.resize());
+    loadData();
+  </script>
+</body>
+</html>
