@@ -31,6 +31,34 @@ const renderHangzhouCards = (data) => {
   });
 };
 
+const renderHangzhouBarChart = (data) => {
+  if (hangzhouBarChart === null) {
+    hangzhouBarChart = echarts.init(document.querySelector('#bar-chart'));
+  }
+
+  const visitorSeries = data.series[0];
+  hangzhouBarChart.setOption({
+    title: { text: '杭州西湖景区各月游客量', left: 'center' },
+    tooltip: { trigger: 'axis' },
+    xAxis: {
+      type: 'category',
+      data: data.months,
+      name: '月份'
+    },
+    yAxis: {
+      type: 'value',
+      name: '万人次',
+      min: 0
+    },
+    series: [{
+      name: visitorSeries.category,
+      type: 'bar',
+      data: visitorSeries.counts,
+      itemStyle: { color: '#198754' }
+    }]
+  });
+};
+
 const loadHangzhouData = async () => {
   $('#status').text('加载中...').show();
   try {
@@ -47,6 +75,7 @@ const loadHangzhouData = async () => {
     $('#sub-title').text(data.source + ' · 统计范围：近 12 个月');
     $('#status').hide();
     renderHangzhouCards(data);
+    renderHangzhouBarChart(data);
   } catch (error) {
     $('#status').text('加载失败：' + error.message).show();
   }
