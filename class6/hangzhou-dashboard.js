@@ -59,6 +59,46 @@ const renderHangzhouBarChart = (data) => {
   });
 };
 
+
+const renderHangzhouLineChart = (data) => {
+  if (hangzhouLineChart !== null) {
+    hangzhouLineChart.destroy();
+  }
+
+  const visitorSeries = data.series[0];
+  hangzhouLineChart = new Chart(document.querySelector('#line-chart'), {
+    type: 'line',
+    data: {
+      labels: data.months,
+      datasets: [{
+        label: visitorSeries.category + '（万人次）',
+        data: visitorSeries.counts,
+        borderColor: '#0d6efd',
+        backgroundColor: 'rgba(13, 110, 253, 0.15)',
+        borderWidth: 2,
+        pointRadius: 3,
+        tension: 0.25,
+        fill: true
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        title: { display: true, text: '杭州西湖景区月度客流趋势' },
+        legend: { position: 'bottom' }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: { display: true, text: '万人次' }
+        },
+        x: { title: { display: true, text: '月份' } }
+      }
+    }
+  });
+};
+
 const loadHangzhouData = async () => {
   $('#status').text('加载中...').show();
   try {
@@ -76,6 +116,7 @@ const loadHangzhouData = async () => {
     $('#status').hide();
     renderHangzhouCards(data);
     renderHangzhouBarChart(data);
+    renderHangzhouLineChart(data);
   } catch (error) {
     $('#status').text('加载失败：' + error.message).show();
   }
