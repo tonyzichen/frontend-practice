@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>杭州三维场景 - 环境阶段</title>
+  <style>
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #b9dce8;
+    }
+
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <script src="./libs/three.min.js"></script>
+  <script src="./libs/OrbitControls.js"></script>
+  <script>
+    // 杭州场景环境：先完成天空色、雾、地面、相机、光源和轨道控制。
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xb9dce8);
+    scene.fog = new THREE.Fog(0xb9dce8, 12, 30);
+
+    const camera = new THREE.PerspectiveCamera(
+      45,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      100
+    );
+    camera.position.set(7, 5, 9);
+    camera.lookAt(0, 0, 0);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // 环境光提供基础亮度，方向光模拟杭州午后的太阳光。
+    scene.add(new THREE.HemisphereLight(0xe8f7ff, 0x6d8f86, 1.2));
+    const sunlight = new THREE.DirectionalLight(0xfff1cf, 1.6);
+    sunlight.position.set(-6, 10, 5);
+    scene.add(sunlight);
+
+    // 地面是后续杭州主题元素的承载环境，暂不添加主题主体。
+    const ground = new THREE.Mesh(
+      new THREE.PlaneGeometry(40, 40),
+      new THREE.MeshStandardMaterial({
+        color: 0x789b78,
+        roughness: 1
+      })
+    );
+    ground.rotation.x = -Math.PI / 2;
+    ground.position.y = -0.5;
+    scene.add(ground);
+
+    // 轨道控制器：支持鼠标拖拽旋转和滚轮缩放。
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.target.set(0, 0, 0);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.minDistance = 4;
+    controls.maxDistance = 20;
+    controls.maxPolarAngle = Math.PI / 2.05;
+    controls.update();
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>
