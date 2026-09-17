@@ -59,6 +59,77 @@
     ground.position.y = -0.5;
     scene.add(ground);
 
+    // 杭州主题主体：用简单几何体表现“西湖、远山、雷峰塔和桥”。
+    const lake = new THREE.Mesh(
+      new THREE.CircleGeometry(5.5, 48),
+      new THREE.MeshStandardMaterial({
+        color: 0x4d9db0,
+        roughness: 0.35,
+        metalness: 0.05
+      })
+    );
+    lake.rotation.x = -Math.PI / 2;
+    lake.position.set(0, -0.46, 1.6);
+    lake.scale.set(1.25, 0.65, 1);
+    scene.add(lake);
+
+    // 远山：三个低矮圆锥体，放在场景后方。
+    const mountainMaterial = new THREE.MeshStandardMaterial({ color: 0x547b63 });
+    [-5, 0, 5].forEach((x, index) => {
+      const mountain = new THREE.Mesh(
+        new THREE.ConeGeometry(2.4, 3.2 + index * 0.35, 5),
+        mountainMaterial
+      );
+      mountain.position.set(x, 1.05, -5.5);
+      scene.add(mountain);
+    });
+
+    // 简化版雷峰塔：方柱塔身 + 三层屋顶。
+    const pagoda = new THREE.Group();
+    const towerMaterial = new THREE.MeshStandardMaterial({ color: 0xd4864d });
+    const roofMaterial = new THREE.MeshStandardMaterial({ color: 0x394b40 });
+
+    const towerBody = new THREE.Mesh(
+      new THREE.BoxGeometry(1.15, 3.4, 1.15),
+      towerMaterial
+    );
+    towerBody.position.y = 1.25;
+    pagoda.add(towerBody);
+
+    [2.9, 2.0, 1.1].forEach((y, index) => {
+      const roof = new THREE.Mesh(
+        new THREE.ConeGeometry(1.15 - index * 0.2, 0.35, 4),
+        roofMaterial
+      );
+      roof.rotation.y = Math.PI / 4;
+      roof.position.y = y;
+      pagoda.add(roof);
+    });
+    pagoda.position.set(3.5, 0, 0.1);
+    scene.add(pagoda);
+
+    // 简单拱桥：桥面和两侧桥栏，横跨湖面前方。
+    const bridge = new THREE.Group();
+    const bridgeMaterial = new THREE.MeshStandardMaterial({ color: 0xe5c58b });
+    const bridgeDeck = new THREE.Mesh(
+      new THREE.BoxGeometry(5, 0.3, 0.8),
+      bridgeMaterial
+    );
+    bridgeDeck.position.y = 0.05;
+    bridge.add(bridgeDeck);
+
+    [-2, -1, 0, 1, 2].forEach((x) => {
+      const post = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.08, 0.08, 0.75, 8),
+        bridgeMaterial
+      );
+      post.position.set(x, 0.45, -0.3);
+      bridge.add(post);
+    });
+    bridge.position.set(-0.5, 0, 2.2);
+    bridge.rotation.y = -0.1;
+    scene.add(bridge);
+
     // 轨道控制器：支持鼠标拖拽旋转和滚轮缩放。
     const controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.target.set(0, 0, 0);
