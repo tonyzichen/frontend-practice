@@ -140,8 +140,18 @@
     controls.maxPolarAngle = Math.PI / 2.05;
     controls.update();
 
+    const clock = new THREE.Clock();
+
     function animate() {
       requestAnimationFrame(animate);
+      const elapsed = clock.getElapsedTime();
+
+      // 简单动画：雷峰塔轻微上下浮动并缓慢转动，湖面轻微变化。
+      pagoda.position.y = Math.sin(elapsed * 1.5) * 0.28;
+      pagoda.rotation.y = Math.sin(elapsed * 0.8) * 0.18;
+      lake.scale.x = 1.25 + Math.sin(elapsed * 1.2) * 0.05;
+      lake.scale.z = 1 + Math.cos(elapsed * 1.2) * 0.05;
+
       controls.update();
       renderer.render(scene, camera);
     }
