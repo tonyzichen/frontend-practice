@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>独立研究一 Promise all 并行请求</title>
+  <link href="libs/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container py-4">
+  <h1 class="h3">独立研究一：Promise.all 并行请求</h1>
+  <p class="text-muted">同时加载图书借阅数据与自习室数据，并对比并行、串行请求耗时。</p>
+
+  <p id="status" class="alert alert-info">等待开始</p>
+  <button id="run-button" class="btn btn-primary mb-3">运行并行与串行对比</button>
+
+  <section id="result" class="card d-none">
+    <div class="card-body">
+      <h2 class="h5">实验结果</h2>
+      <p id="data-summary"></p>
+      <table class="table table-bordered mb-0">
+        <thead><tr><th>请求方式</th><th>耗时</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>Promise.all 并行</td><td id="parallel-time">-</td><td>两份请求同时发出</td></tr>
+          <tr><td>await 串行</td><td id="serial-time">-</td><td>前一份完成后再请求下一份</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <script src="libs/jquery-3.7.1.min.js"></script>
+  <script>
+    const fetchJson = async (url) => {
+      const response = await fetch(url, { cache: 'no-store' });
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      return response.json();
+    };
+
+    const runStudy = async () => {
+      $('#status').removeClass('alert-danger alert-success').addClass('alert-info')
+        .text('加载中：正在并行请求两份 JSON 数据...');
+      $('#result').addClass('d-none');
+      try {
+        const parallelStart = performance.now();
+        const [books, rooms] = await Promise.all([
+          fetchJson('data/books.json'),
+          fetchJson('data/studyrooms.json')
+        ]);
+        const parallelMs = performance.now() - parallelStart;
+
+        const serialStart = performance.now();
+        await fetchJson('data/books.json');
+        await fetchJson('data/studyrooms.json');
+        const serialMs = performance.now() - serialStart;
+
+        $('#data-summary').text(
+          `全部完成：已加载 ${books.series.length} 个借阅品类和 ${rooms.rooms.length} 间自习室。`
+        );
+        $('#parallel-time').text(parallelMs.toFixed(2) + ' ms');
+        $('#serial-time').text(serialMs.toFixed(2) + ' ms');
+        $('#result').removeClass('d-none');
+        $('#status').removeClass('alert-info').addClass('alert-success')
+          .text('全部完成：两份数据均已成功加载。');
+      } catch (error) {
+        $('#status').removeClass('alert-info').addClass('alert-danger')
+          .text('加载失败：' + error.message);
+      }
+    };
+
+    $('#run-button').on('click', runStudy);
+  </script>
+</body>
+</html>
