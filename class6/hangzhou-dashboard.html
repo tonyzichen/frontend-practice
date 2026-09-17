@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>杭州西湖景区月度客流看板</title>
+  <link href="libs/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .chart-box { height: 360px; }
+    #status { display: none; }
+  </style>
+</head>
+<body class="container py-4">
+  <header class="mb-4">
+    <h1 class="h3">杭州西湖景区月度客流看板</h1>
+    <p id="sub-title" class="text-muted mb-0">数据来源：课堂实践模拟数据</p>
+  </header>
+
+  <p id="status" class="alert alert-warning"></p>
+
+  <section class="row g-3 mb-4" id="cards"></section>
+
+  <section class="row g-3">
+    <div class="col-lg-6">
+      <h2 class="h5">各月游客量（ECharts 柱状图）</h2>
+      <div id="bar-chart" class="chart-box border rounded bg-light"></div>
+    </div>
+    <div class="col-lg-6">
+      <h2 class="h5">客流趋势（Chart.js 折线图）</h2>
+      <div class="chart-box border rounded bg-light"><canvas id="line-chart"></canvas></div>
+    </div>
+  </section>
+
+  <script src="libs/jquery-3.7.1.min.js"></script>
+  <script src="libs/bootstrap.bundle.min.js"></script>
+  <script src="libs/echarts.min.js"></script>
+  <script src="libs/chart.umd.js"></script>
+  <script src="hangzhou-dashboard.js"></script>
+</body>
+</html>
