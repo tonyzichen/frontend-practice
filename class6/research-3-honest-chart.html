@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>独立研究三 误导图表修复</title>
+  <link href="libs/bootstrap.min.css" rel="stylesheet">
+  <style>.chart-box { height: 360px; }</style>
+</head>
+<body class="container py-4">
+  <h1 class="h3">独立研究三：截断坐标轴的误导与修复</h1>
+  <p class="text-muted">同一份课程数据，两张柱状图只改变 y 轴起点。左图会夸大差异；右图用于诚实比较。</p>
+  <p id="status" class="alert alert-info">加载中...</p>
+  <section class="row g-3">
+    <div class="col-lg-6">
+      <h2 class="h5 text-danger">误导版本：y 轴从 300 开始</h2>
+      <div id="misleading-chart" class="chart-box"></div>
+    </div>
+    <div class="col-lg-6">
+      <h2 class="h5 text-success">修复版本：y 轴从 0 开始</h2>
+      <div id="honest-chart" class="chart-box"></div>
+    </div>
+  </section>
+  <section class="mt-4">
+    <h2 class="h5">分析说明</h2>
+    <p>柱状图用柱子的长度表达数值，因此基线被截断后，原本相近的借阅量会显得差距极大。本页左图把 y 轴起点设为 300，放大了文学图书在各月的波动；右图使用相同数据，但从 0 起绘制，使读者能按真实比例判断差异。课程作业中的数量比较图应使用 0 基线，并写明数据来源、时间范围和单位。</p>
+  </section>
+
+  <script src="libs/jquery-3.7.1.min.js"></script>
+  <script src="libs/echarts.min.js"></script>
+  <script>
+    const makeOption = (data, yMin, color, title) => ({
+      title: { text: title, left: 'center' },
+      tooltip: { trigger: 'axis' },
+      xAxis: { type: 'category', data: data.months },
+      yAxis: { name: '册', min: yMin },
+      series: [{ name: '文学', type: 'bar', data: data.series[0].counts, itemStyle: { color } }]
+    });
+
+    const loadData = async () => {
+      try {
+        const response = await fetch('data/books.json');
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        const data = await response.json();
+        const misleading = echarts.init(document.querySelector('#misleading-chart'));
+        const honest = echarts.init(document.querySelector('#honest-chart'));
+        misleading.setOption(makeOption(data, 300, '#dc3545', '文学月度借阅量（截断 y 轴）'));
+        honest.setOption(makeOption(data, 0, '#198754', '文学月度借阅量（0 基线）'));
+        window.addEventListener('resize', () => { misleading.resize(); honest.resize(); });
+        $('#status').removeClass('alert-info').addClass('alert-success').text('加载完成：请比较两张图的视觉差异。');
+      } catch (error) {
+        $('#status').removeClass('alert-info').addClass('alert-danger').text('加载失败：' + error.message);
+      }
+    };
+    loadData();
+  </script>
+</body>
+</html>
