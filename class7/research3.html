@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<body style="margin:0">
+
+<div id="info" style="position:fixed;color:white;background:black;padding:8px"></div>
+
+<script src="libs/three.min.js"></script>
+
+<script>
+  // 实验时修改这两个值
+  const ANTIALIAS = true; // true/false
+  const COUNT = 500;
+
+  const scene = new THREE.Scene();
+
+  const camera = new THREE.PerspectiveCamera(
+    75,
+    innerWidth / innerHeight
+  );
+  camera.position.z = 40;
+
+  const renderer = new THREE.WebGLRenderer({
+    antialias: ANTIALIAS
+  });
+  
+  renderer.setSize(innerWidth, innerHeight);
+  document.body.appendChild(renderer.domElement);
+
+  const geometry = new THREE.BoxGeometry();
+  const material = new THREE.MeshBasicMaterial({
+    color: 'blue'
+  });
+
+  for (let i = 0; i < COUNT; i++) {
+    const cube = new THREE.Mesh(geometry, material);
+
+    cube.position.set(
+      Math.random() * 50 - 25,
+      Math.random() * 35 - 17.5,
+      Math.random() * 20 - 10
+    );
+
+    scene.add(cube);
+  }
+
+  let frames = 0;
+  let lastTime = performance.now();
+
+  function animate(now) {
+    requestAnimationFrame(animate);
+
+    scene.rotation.y += 0.002;
+    renderer.render(scene, camera);
+    frames++;
+
+    if (now - lastTime >= 1000) {
+      info.innerHTML =
+        `抗锯齿：${ANTIALIAS}<br>` +
+        `物体数量：${COUNT}<br>` +
+        `FPS：${frames}`;
+
+      frames = 0;
+      lastTime = now;
+    }
+  }
+
+  requestAnimationFrame(animate);
+</script>
+
+</body>
+</html>
