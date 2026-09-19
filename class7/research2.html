@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<body style="margin: 0">
+
+<script src="libs/three.min.js"></script>
+
+<script>
+  const scene = new THREE.Scene();
+
+  const camera = new THREE.PerspectiveCamera(
+    75,
+    innerWidth / innerHeight,
+    0.1,
+    1000
+  );
+  camera.position.z = 5;
+
+  const renderer = new THREE.WebGLRenderer();
+  renderer.setSize(innerWidth, innerHeight);
+  document.body.appendChild(renderer.domElement);
+
+  const cube = new THREE.Mesh(
+    new THREE.BoxGeometry(2, 2, 2),
+    new THREE.MeshBasicMaterial({ color: 'blue' })
+  );
+  scene.add(cube);
+
+  renderer.render(scene, camera);
+
+  const raycaster = new THREE.Raycaster();
+
+  window.addEventListener('click', function (event) {
+    const mouse = new THREE.Vector2(
+      event.clientX / innerWidth * 2 - 1,
+      -(event.clientY / innerHeight) * 2 + 1
+    );
+
+    raycaster.setFromCamera(mouse, camera);
+
+    if (raycaster.intersectObject(cube).length > 0) {
+      cube.material.color.set('red');
+      renderer.render(scene, camera);
+    }
+  });
+</script>
+
+</body>
+</html>
