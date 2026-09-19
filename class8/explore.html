@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="诗画杭州：搜索西湖、灵隐寺、河坊街等杭州景点，按自然风光、人文古迹、市井街巷筛选，轻松规划你的行程。">
+  <title>诗画杭州｜景点探索</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%232d7783'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='white'%3E%E6%9D%AD%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="诗画杭州首页">
+        <span class="brand-mark" aria-hidden="true">杭</span>
+        <span>诗画杭州</span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="menu-icon" aria-hidden="true"></span>
+        <span class="sr-only">展开导航</span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="主导航">
+        <a href="index.html">首页</a>
+        <a href="index.html#city">城市印象</a>
+        <a href="index.html#places">精选景点</a>
+        <a class="is-current" href="explore.html" aria-current="page">景点探索</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="section" aria-labelledby="explore-title">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">EXPLORE HANGZHOU</p>
+          <h1 id="explore-title">景点探索</h1>
+          <p>从湖光山色到市井烟火，输入关键字或选择类型，找到你想去的那一站。门票信息仅供参考，以景区现场公示为准。</p>
+        </div>
+
+        <div id="explore-toolbar">
+          <input id="place-search" class="button button-secondary" type="search" placeholder="搜索景点、区域或门票，如：西湖、免费" aria-label="搜索景点">
+          <button class="button button-primary" type="button" data-type="全部">全部</button>
+          <button class="button button-secondary" type="button" data-type="自然风光">自然风光</button>
+          <button class="button button-secondary" type="button" data-type="人文古迹">人文古迹</button>
+          <button class="button button-secondary" type="button" data-type="市井街巷">市井街巷</button>
+        </div>
+
+        <p id="result-count" class="eyebrow" aria-live="polite">正在加载景点…</p>
+
+        <div id="place-list" class="place-grid"></div>
+
+        <p id="empty-state" hidden>没有找到符合条件的景点，换个关键字或切回「全部」再试试。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>诗画杭州 · 城市探索与行程助手</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/explore.js"></script>
+</body>
+</html>
