@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="诗画杭州：城市探索与行程助手的第一课响应式信息首页。">
+  <title>诗画杭州｜城市探索与行程助手</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%232d7783'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='white'%3E%E6%9D%AD%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="诗画杭州首页">
+        <span class="brand-mark" aria-hidden="true">杭</span>
+        <span>诗画杭州</span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="menu-icon" aria-hidden="true"></span>
+        <span class="sr-only">展开导航</span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="主导航">
+        <a class="is-current" href="#home">首页</a>
+        <a href="#city">城市印象</a>
+        <a href="#places">精选景点</a>
+        <a href="#next">课程进度</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section id="home" class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">城市探索与行程助手 · 第一课</p>
+          <h1 id="hero-title">一湖映千年，<br>一城见江南。</h1>
+          <p class="hero-text">从西湖的水色、山寺的钟声到街巷的烟火，先用一页响应式首页认识杭州；后续课程将在这里接入景点查询、数据看板和三维导览。</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#city">了解杭州</a>
+            <a class="button button-secondary" href="#places">浏览精选景点</a>
+          </div>
+        </div>
+        <div class="lake-illustration" role="img" aria-label="湖面、远山、雷峰塔与月亮构成的杭州主题插画">
+          <span class="moon" aria-hidden="true"></span>
+          <span class="mountain mountain-back" aria-hidden="true"></span>
+          <span class="mountain mountain-front" aria-hidden="true"></span>
+          <span class="pagoda" aria-hidden="true"><i></i><i></i><i></i><b></b></span>
+          <span class="bridge" aria-hidden="true"></span>
+          <span class="lake-ripple ripple-one" aria-hidden="true"></span>
+          <span class="lake-ripple ripple-two" aria-hidden="true"></span>
+        </div>
+      </div>
+    </section>
+
+    <section id="city" class="section section-city" aria-labelledby="city-title">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">CITY NOTES</p>
+          <h2 id="city-title">先从城市印象开始</h2>
+          <p>本页保留来自已有杭州练习的概况、历史与现代发展内容，并以统一的卡片和响应式布局重新组织。</p>
+        </div>
+        <div class="info-grid">
+          <article class="info-card">
+            <span class="card-number" aria-hidden="true">01</span>
+            <h3>山水相依</h3>
+            <p>西湖、群山与城市街巷共同构成杭州独有的空间气质。湖面四季各有风景，也连接着市民日常与旅行记忆。</p>
+          </article>
+          <article class="info-card">
+            <span class="card-number" aria-hidden="true">02</span>
+            <h3>文脉绵长</h3>
+            <p>从南宋遗韵、运河商贸到茶文化，历史沉淀在寺院、古街与一杯龙井茶里，等待被慢慢阅读。</p>
+          </article>
+          <article class="info-card">
+            <span class="card-number" aria-hidden="true">03</span>
+            <h3>活力新城</h3>
+            <p>传统园林与数字经济并存，让这座城市既适合漫步探索，也适合用数据和交互方式重新观察。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="places" class="section section-places" aria-labelledby="places-title">
+      <div class="container">
+        <div class="section-heading section-heading-row">
+          <div>
+            <p class="eyebrow">PLACES TO START</p>
+            <h2 id="places-title">六处精选景点</h2>
+          </div>
+          <p>第 2 步会将这些静态卡片替换为从本地 JSON 加载、可搜索和筛选的景点目录。</p>
+        </div>
+        <div class="place-grid">
+          <article class="place-card place-westlake">
+            <span>湖光山色</span>
+            <h3>西湖</h3>
+            <p>苏堤白堤横贯碧波，柔波与塔影相映。</p>
+          </article>
+          <article class="place-card place-lingyin">
+            <span>山林古刹</span>
+            <h3>灵隐寺</h3>
+            <p>飞来峰造像与千年香火，让山林多了一层禅意。</p>
+          </article>
+          <article class="place-card place-leifeng">
+            <span>传说地标</span>
+            <h3>雷峰塔</h3>
+            <p>夕照中的塔影，是西湖边最熟悉的轮廓之一。</p>
+          </article>
+          <article class="place-card place-xixi">
+            <span>湿地野趣</span>
+            <h3>西溪湿地</h3>
+            <p>摇橹船穿行芦苇深处，感受水网与草木的呼吸。</p>
+          </article>
+          <article class="place-card place-hefang">
+            <span>市井烟火</span>
+            <h3>河坊街</h3>
+            <p>百年老字号与街巷小吃，保留着热闹的人间味道。</p>
+          </article>
+          <article class="place-card place-longjing">
+            <span>茶香山谷</span>
+            <h3>龙井村</h3>
+            <p>茶田顺着山势铺展，一口茶里有春天的清香。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="next" class="section section-next" aria-labelledby="next-title">
+      <div class="container next-card">
+        <div>
+          <p class="eyebrow">NEXT UP</p>
+          <h2 id="next-title">第一步已完成：站点骨架与信息首页</h2>
+          <p>下一步将在此基础上新增景点探索页：读取本地 JSON，支持关键字搜索与类型筛选。最后再加入数据看板、两类图表和三维西湖区域。</p>
+        </div>
+        <ol class="progress-list">
+          <li class="is-done"><span>1</span> 首页与响应式样式</li>
+          <li><span>2</span> JSON 景点查询</li>
+          <li><span>3</span> 图表与三维导览</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>诗画杭州 · 城市探索与行程助手 · 第一课第 1 步</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
