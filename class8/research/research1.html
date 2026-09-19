@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>可访问性审查实验</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      width: 700px;
+      margin: 40px auto;
+      line-height: 1.8;
+    }
+
+    .tip {
+      color: #bbbbbb;
+      background-color: white;
+    }
+
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+
+    img {
+      width: 300px;
+      height: 160px;
+    }
+
+    input {
+      padding: 8px;
+    }
+
+    button {
+      padding: 8px 15px;
+      margin-left: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>杭州旅游信息查询</h1>
+
+  <p class="tip">
+    输入景点名称，可以查询相关旅游信息。
+  </p>
+
+  <img
+    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='160'%3E%3Crect width='300' height='160' fill='%23dddddd'/%3E%3Ctext x='90' y='85' font-size='20'%3E杭州风景%3C/text%3E%3C/svg%3E">
+
+  <h2>景点查询</h2>
+
+  <input
+    type="text"
+    id="keyword"
+    placeholder="请输入景点名称">
+
+  <button>
+    <span aria-hidden="true">🔍</span>
+  </button>
+
+  <p>
+    你也可以访问
+    <a href="https://www.hangzhou.gov.cn/">杭州官方网站</a>
+    查看更多信息。
+  </p>
+
+</body>
+</html>
