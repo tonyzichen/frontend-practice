@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>校园信息中心</title>
+  <link href="libs/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-expand-md bg-body-tertiary border-bottom" aria-label="主导航">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#home">校园信息中心</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="展开导航"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="main-nav"><div class="navbar-nav ms-auto">
+        <a class="nav-link active" href="#home">首页</a>
+        <a class="nav-link" href="#rooms">自习室</a>
+        <a class="nav-link" href="#stats">统计</a>
+        <a class="nav-link" href="three-d/scene.html">校园三维</a>
+      </div></div>
+    </div>
+  </nav>
+
+  <main class="container py-4">
+    <section id="home" class="mb-5">
+      <h1 class="h3">校园信息中心</h1>
+      <p class="text-muted">校园公共信息与数据展示平台首页，下面为各功能模块入口。</p>
+      <div class="row g-3">
+        <div class="col-12 col-sm-6 col-lg-3"><div class="card h-100"><div class="card-body"><h2 class="h5">自习室</h2><p class="card-text text-muted">自习室查询模块占位。</p><a href="#rooms" class="btn btn-outline-primary btn-sm">进入模块</a></div></div></div>
+        <div class="col-12 col-sm-6 col-lg-3"><div class="card h-100"><div class="card-body"><h2 class="h5">使用统计</h2><p class="card-text text-muted">数据统计图表模块占位。</p><a href="#stats" class="btn btn-outline-primary btn-sm">进入模块</a></div></div></div>
+        <div class="col-12 col-sm-6 col-lg-3"><div class="card h-100"><div class="card-body"><h2 class="h5">校园三维</h2><p class="card-text text-muted">校园三维导览模块占位。</p><a href="three-d/scene.html" class="btn btn-outline-primary btn-sm">进入模块</a></div></div></div>
+        <div class="col-12 col-sm-6 col-lg-3"><div class="card h-100"><div class="card-body"><h2 class="h5">校园公告</h2><p class="card-text text-muted">校园公共信息模块占位。</p><span class="badge text-bg-secondary">建设中</span></div></div></div>
+      </div>
+    </section>
+    <section id="rooms" class="module-placeholder mb-4"><h2 class="h5">自习室</h2><p class="text-muted mb-0">此处预留自习室查询内容，后续加入楼层和开放状态筛选。</p></section>
+    <section id="stats" class="module-placeholder mb-4"><h2 class="h5">统计</h2><p class="text-muted mb-0">此处预留自习室使用量统计图表，后续加载数据文件。</p></section>
+    <section id="three-d" class="module-placeholder mb-4"><h2 class="h5">校园三维</h2><p class="text-muted mb-0">三维导览页面将在后续步骤接入。</p></section>
+  </main>
+  <footer class="text-center text-muted py-4 border-top">软件开发综合实践 · 校园信息中心</footer>
+  <script src="libs/bootstrap.bundle.min.js"></script>
+</body>
+</html>
