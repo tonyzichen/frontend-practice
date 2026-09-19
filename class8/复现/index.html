@@ -68,7 +68,15 @@
       <p id="chart-source" class="small text-muted"></p>
       <div id="usage-chart" class="card" style="height: 420px;"></div>
     </section>
-    <section id="three-d" class="module-placeholder mb-4"><h2 class="h5">校园三维</h2><p class="text-muted mb-0">点击导航或首页卡片进入校园三维导览。</p></section>
+    <section id="three-d" class="mb-4">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h2 class="h5 mb-0">校园三维导览</h2>
+        <a class="btn btn-outline-primary btn-sm" href="three-d/scene.html" target="_blank" rel="noopener">新窗口打开</a>
+      </div>
+      <div class="ratio ratio-16x9 rounded overflow-hidden border bg-dark">
+        <iframe src="three-d/scene.html" title="校园三维导览" loading="lazy"></iframe>
+      </div>
+    </section>
   </main>
   <footer class="text-center text-muted py-4 border-top">软件开发综合实践 · 校园信息中心</footer>
   <script src="libs/bootstrap.bundle.min.js"></script>
