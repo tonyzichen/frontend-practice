@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>走进杭州——课堂综合大作业</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>走进杭州</h1>
+    <p>课堂作业六至八综合展示</p>
+    <nav>
+      <a href="#intro">杭州印象</a>
+      <a href="#places">景点探索</a>
+      <a href="#charts">数据图表</a>
+      <a href="#three">三维西湖</a>
+      <a href="#aframe">A-Frame</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="intro">
+      <h2>杭州印象</h2>
+      <p>杭州是一座有山、有水、有历史的城市。西湖、灵隐寺、河坊街和京杭大运河共同组成了杭州丰富的城市风景。</p>
+      <div id="summary" class="card-row">
+        <div class="card"><strong>10</strong><span>收录景点</span></div>
+        <div class="card"><strong>3</strong><span>景点类型</span></div>
+        <div class="card"><strong>6</strong><span>课堂技术</span></div>
+      </div>
+    </section>
+
+    <section id="places">
+      <h2>杭州景点探索</h2>
+      <p>景点资料通过 Fetch 异步读取，并用 jQuery 完成搜索、筛选和事件委托。</p>
+      <div class="tools">
+        <input id="search" type="search" placeholder="输入景点名称或区域">
+        <button class="active" data-type="全部">全部</button>
+        <button data-type="自然风光">自然风光</button>
+        <button data-type="人文古迹">人文古迹</button>
+        <button data-type="市井街巷">市井街巷</button>
+      </div>
+      <p id="load-status">正在加载杭州景点数据……</p>
+      <div id="place-list" class="place-list"></div>
+    </section>
+  </main>
+
+  <footer>前端课堂大作业 · 杭州主题综合网页</footer>
+
+</body>
+</html>
