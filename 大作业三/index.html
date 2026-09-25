@@ -43,9 +43,31 @@
       <p id="load-status">正在加载杭州景点数据……</p>
       <div id="place-list" class="place-list"></div>
     </section>
+
+    <section id="charts">
+      <h2>杭州景区客流数据</h2>
+      <p>同一份异步数据分别交给 ECharts 和 Chart.js 展示。</p>
+      <div id="chart-cards" class="card-row"></div>
+      <div class="chart-row">
+        <div class="chart-panel">
+          <h3>ECharts：热门景点客流</h3>
+          <div id="bar-chart" class="chart"></div>
+        </div>
+        <div class="chart-panel">
+          <h3>Chart.js：月度客流趋势</h3>
+          <div class="chart"><canvas id="line-chart"></canvas></div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>前端课堂大作业 · 杭州主题综合网页</footer>
+
+  <script src="libs/jquery-3.7.1.min.js"></script>
+  <script src="libs/echarts.min.js"></script>
+  <script src="libs/chart.umd.js"></script>
+  <script src="app.js"></script>
+
 
 </body>
 </html>
