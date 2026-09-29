@@ -1,0 +1,166 @@
+{
+  "title": "诗画杭州 · 景点目录",
+  "source": "class1、class3、class5、class8 课堂内容整合；介绍为学习资料",
+  "places": [
+    {
+      "name": "西湖",
+      "type": "自然风光",
+      "tag": "湖光山色",
+      "ticket": "费用请自行核实；本站不提供实时票价",
+      "description": "苏堤白堤横贯碧波，柔波与塔影相映，四季皆是风景。",
+      "id": "westlake",
+      "area": "西湖区",
+      "sceneKey": "westlake"
+    },
+    {
+      "name": "灵隐寺",
+      "type": "人文古迹",
+      "tag": "山林古刹",
+      "ticket": "费用请自行核实；本站不提供实时票价",
+      "description": "飞来峰造像与千年香火，让山林多了一层禅意。",
+      "id": "lingyin",
+      "area": "西湖区",
+      "sceneKey": null
+    },
+    {
+      "name": "雷峰塔",
+      "type": "人文古迹",
+      "tag": "传说地标",
+      "ticket": "费用请自行核实；本站不提供实时票价",
+      "description": "夕照中的塔影，是西湖边最熟悉的轮廓之一，登塔可俯瞰全湖。",
+      "id": "leifengta",
+      "area": "西湖区",
+      "sceneKey": "leifengta"
+    },
+    {
+      "name": "西溪湿地",
+      "type": "自然风光",
+      "tag": "湿地野趣",
+      "ticket": "费用请自行核实；本站不提供实时票价",
+      "description": "摇橹船穿行芦苇深处，感受水网与草木的呼吸。",
+      "id": "xixi",
+      "area": "西湖区",
+      "sceneKey": null
+    },
+    {
+      "name": "河坊街",
+      "type": "市井街巷",
+      "tag": "市井烟火",
+      "ticket": "费用请自行核实；本站不提供实时票价",
+      "description": "百年老字号与街巷小吃，保留着热闹的人间味道。",
+      "id": "hefang",
+      "area": "上城区",
+      "sceneKey": null
+    },
+    {
+      "name": "龙井村",
+      "type": "自然风光",
+      "tag": "茶香山谷",
+      "ticket": "费用请自行核实；本站不提供实时票价",
+      "description": "茶田顺着山势铺展，一口茶里有春天的清香。",
+      "id": "longjing",
+      "area": "西湖区",
+      "sceneKey": null
+    },
+    {
+      "name": "保俶塔",
+      "type": "人文古迹",
+      "tag": "湖畔古塔",
+      "ticket": "费用请自行核实；本站不提供实时票价",
+      "description": "立于宝石山巅，与雷峰塔隔湖相望，素有“保俶如美人”之称。",
+      "id": "baochu",
+      "area": "西湖区",
+      "sceneKey": null
+    },
+    {
+      "name": "太子湾公园",
+      "type": "自然风光",
+      "tag": "花事胜地",
+      "ticket": "费用请自行核实；本站不提供实时票价",
+      "description": "春日郁金香与樱花次第盛开，是杭州人踏青野餐的首选。",
+      "id": "taiziwan",
+      "area": "西湖区",
+      "sceneKey": null
+    },
+    {
+      "name": "大兜路历史街区",
+      "type": "市井街巷",
+      "tag": "运河人家",
+      "ticket": "费用请自行核实；本站不提供实时票价",
+      "description": "运河边的老街，茶馆餐厅错落，入夜灯笼映水格外好看。",
+      "id": "dadou",
+      "area": "拱墅区",
+      "sceneKey": null
+    },
+    {
+      "name": "拱宸桥",
+      "type": "人文古迹",
+      "tag": "运河古桥",
+      "ticket": "费用请自行核实；本站不提供实时票价",
+      "description": "横跨京杭大运河的三孔石桥，桥头的老街区适合傍晚慢慢散步。",
+      "id": "gongchen",
+      "area": "拱墅区",
+      "sceneKey": null
+    },
+    {
+      "id": "duanqiao",
+      "name": "断桥",
+      "type": "人文古迹",
+      "area": "西湖区",
+      "tag": "杭州漫游",
+      "description": "白堤上的熟悉地标，连接湖畔漫步与江南故事。",
+      "ticket": "费用请自行核实；本站不提供实时票价",
+      "sceneKey": "duanqiao"
+    },
+    {
+      "id": "canal",
+      "name": "京杭大运河",
+      "type": "人文古迹",
+      "area": "杭州段",
+      "tag": "杭州漫游",
+      "description": "沿岸桥梁、街巷与水运文化，串起城市的另一条记忆。",
+      "ticket": "费用请自行核实；本站不提供实时票价",
+      "sceneKey": null
+    },
+    {
+      "id": "liangzhu",
+      "name": "良渚古城遗址",
+      "type": "人文古迹",
+      "area": "余杭区",
+      "tag": "杭州漫游",
+      "description": "从遗址空间认识悠远的文明与城市起源。",
+      "ticket": "费用请自行核实；本站不提供实时票价",
+      "sceneKey": null
+    },
+    {
+      "id": "qiandao",
+      "name": "千岛湖",
+      "type": "自然风光",
+      "area": "淳安县",
+      "tag": "杭州漫游",
+      "description": "岛屿与湖水构成开阔风景，适合单独安排旅程。",
+      "ticket": "费用请自行核实；本站不提供实时票价",
+      "sceneKey": null
+    },
+    {
+      "id": "songcheng",
+      "name": "宋城",
+      "type": "人文古迹",
+      "area": "西湖区",
+      "tag": "杭州漫游",
+      "description": "以宋文化为主题的游览与演艺空间。",
+      "ticket": "费用请自行核实；本站不提供实时票价",
+      "sceneKey": null
+    },
+    {
+      "id": "liuhe",
+      "name": "六和塔",
+      "type": "人文古迹",
+      "area": "西湖区",
+      "tag": "杭州漫游",
+      "description": "钱塘江畔的古塔，连接江景与历史印象。",
+      "ticket": "费用请自行核实；本站不提供实时票价",
+      "sceneKey": null
+    }
+  ]
+}

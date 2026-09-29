@@ -9,9 +9,11 @@
   <link rel="icon" href="images/logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="libs/bootstrap-5.3.3.min.css" />
   <link rel="stylesheet" href="css/common.css" />
+  <link rel="stylesheet" href="css/home.css" />
 </head>
 
 <body>
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="index.html">
@@ -35,13 +37,72 @@
   </div>
   <main id="main-content">
     <section class="hero">
-       
+      <div class="container hero-grid">
+        <div class="row align-items-center g-4">
+          <div class="col-12 col-md-7">
+            <p class="eyebrow">杭州信息与数据展示中心</p>
+            <h1>欢迎来到诗画杭州</h1>
+            <p class="hero-text">
+              这里可以查看杭州的景点和美食，收藏想去的地方，也可以记录行程和费用。
+            </p>
+            <div class="actions">
+              <a class="button primary" href="explore.html">查看景点</a>
+              <a class="button secondary" href="scene.html">三维展示</a>
+            </div>
+            <div id="home-summary" class="hero-summary"></div>
+          </div>
+          <figure class="col-12 col-md-5 mb-0">
+            <img src="images/westlake-hero.jpg" class="img-fluid hero-image" alt="浅绿色西湖插画：湖水、远山、古桥和湖畔塔影" width="1200"
+              height="900" />
+          </figure>
+        </div>
+      </div>
     </section>
     <section class="section container" id="city">
-     
+      <p class="eyebrow">城市介绍</p>
+      <h2>认识杭州</h2>
+      <div id="city-content" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+        <div class="col">
+          <article class="info-card">
+            <span class="card-number">01</span>
+            <h3>杭州概况</h3>
+            <p>
+              杭州位于浙江省，是浙江省省会。西湖、运河等景点吸引了许多游客，本网站整理了部分景点和美食信息。
+            </p>
+          </article>
+        </div>
+        <div class="col">
+          <article class="info-card">
+            <span class="card-number">02</span>
+            <h3>历史文化</h3>
+            <p>
+              杭州有较长的历史，曾是南宋都城。西湖、寺庙、古塔和运河街区保留了许多历史文化特色。
+            </p>
+          </article>
+        </div>
+        <div class="col">
+          <article class="info-card">
+            <span class="card-number">03</span>
+            <h3>城市发展</h3>
+            <p>
+              杭州既有传统景区，也有现代城区。除了参观景点，还可以了解当地的茶文化和日常生活。
+            </p>
+          </article>
+        </div>
+      </div>
     </section>
     <section class="section tint">
-     
+      <div class="container">
+        <div class="section-heading-row">
+          <div>
+            <p class="eyebrow">景点推荐</p>
+            <h2>推荐景点</h2>
+          </div>
+          <a href="explore.html">查看全部景点</a>
+        </div>
+        <div id="featured" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3"></div>
+        <p id="featured-status" role="status"></p>
+      </div>
     </section>
   </main>
   <footer class="site-footer">
@@ -52,7 +113,10 @@
     </div>
   </footer>
   <script src="libs/jquery-3.7.1.min.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/app.js?v=14"></script>
+  <script src="js/storage.js?v=4"></script>
+  <script src="js/places.js?v=4"></script>
+  <script src="js/home.js?v=9"></script>
 </body>
 
 </html>

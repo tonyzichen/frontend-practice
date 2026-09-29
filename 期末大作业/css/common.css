@@ -1,0 +1,353 @@
+/* 公共样式：配色、排版、导航、卡片、按钮和通用响应式规则。 */
+
+:root {
+  --bg: #f6faf5;
+  --tint: #edf5e9;
+  --ink: #354333;
+  --muted: #687564;
+  --accent: #527b49;
+  --line: #dce7d7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font:
+    15px/1.7 "Microsoft YaHei",
+    Arial,
+    sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0 0 14px;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+button,
+input,
+select {
+  max-width: 100%;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+}
+
+input,
+select {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 8px 10px;
+  border: 1px solid #ccd9c6;
+  border-radius: 7px;
+  background: white;
+  color: var(--ink);
+  min-width: 0;
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid #a7c596;
+  outline-offset: 1px;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #769c63;
+  outline-offset: 3px;
+}
+
+/* 导航、页脚、卡片、按钮和公共布局 */
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.site-header {
+  background: #e7f1e1;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+  gap: 20px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #45643d;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+#site-nav {
+  display: flex;
+  gap: 8px;
+}
+
+#site-nav a {
+  color: #52674b;
+  padding: 7px 16px;
+  border-radius: 7px;
+}
+
+#site-nav a.is-current {
+  background: #d7e8ce;
+  color: #3f6037;
+  font-weight: bold;
+}
+
+.menu-button {
+  display: none;
+}
+
+.skip-link {
+  position: absolute;
+  left: 10px;
+  top: -100px;
+  padding: 8px;
+  background: white;
+}
+
+.skip-link:focus {
+  top: 8px;
+}
+
+#action-status:empty {
+  display: none;
+}
+
+#action-status,
+.notice {
+  margin: 12px 0;
+  padding: 10px;
+  background: #fff5d6;
+  color: #72521c;
+  border: 1px solid #e2d2a1;
+}
+
+.hero-text,
+.intro {
+  color: var(--muted);
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.button,
+.chip,
+.quiet {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: white;
+  color: var(--accent);
+  font-size: 14px;
+}
+
+.primary,
+.chip[aria-pressed="true"] {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.section {
+  padding: 28px 0;
+}
+
+.tint {
+  background: var(--tint);
+}
+
+.section-heading-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.section-heading-row p {
+  margin-bottom: 8px;
+}
+
+.info-card,
+.panel,
+.place-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  min-width: 0;
+  box-shadow: 0 3px 12px rgba(70, 100, 55, 0.04);
+}
+
+.info-card,
+.panel {
+  padding: 20px;
+}
+
+.info-card p {
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+.card-number {
+  display: block;
+  color: #6b8b58;
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.place-body {
+  padding: 18px;
+}
+
+.place-body p {
+  font-size: 14px;
+}
+
+.place-body .eyebrow {
+  color: var(--accent);
+}
+
+.place-body .actions {
+  margin-top: 14px;
+}
+
+.muted,
+.small {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.empty {
+  padding: 20px;
+  text-align: center;
+  color: var(--muted);
+  background: var(--tint);
+}
+
+.site-footer {
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  background: white;
+}
+
+.site-footer p {
+  margin: 6px 0;
+}
+
+.site-footer a {
+  display: block;
+  margin-top: 8px;
+}
+
+.info-card {
+  border-top: 3px solid #cddfbd;
+}
+
+.button,
+.chip,
+.quiet,
+#site-nav a {
+  transition: background-color 0.15s;
+}
+
+.button:hover,
+.chip:hover,
+.quiet:hover {
+  background: #eef5e9;
+  text-decoration: none;
+}
+
+.primary:hover,
+.chip[aria-pressed="true"]:hover {
+  background: #456d3d;
+}
+
+#site-nav a:hover {
+  background: #dcebd4;
+  text-decoration: none;
+}
+
+/* 布局交给 Bootstrap 的 container、row 和 col，下面只补外观。 */
+.brand-icon {
+  flex-shrink: 0;
+}
+
+.row > .col > .info-card,
+.row > .col > .place-card {
+  height: 100%;
+}
+
+/* section 的上下间距不覆盖 Bootstrap 容器的左右留白。 */
+.section.container {
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+}
