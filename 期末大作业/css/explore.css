@@ -1,0 +1,28 @@
+/* 景点探索的搜索与筛选栏 */
+
+.toolbar {
+  margin: 20px 0;
+}
+
+.search-label {
+  max-width: 600px;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.filter-row label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-row select {
+  width: auto;
+  margin: 0;
+}

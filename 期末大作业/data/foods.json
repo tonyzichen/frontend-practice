@@ -1,0 +1,28 @@
+{
+  "foods": [
+    {
+      "name": "西湖醋鱼",
+      "description": "糖醋芡汁，酸甜风味。"
+    },
+    {
+      "name": "东坡肉",
+      "description": "慢火细炖，酥烂红亮。"
+    },
+    {
+      "name": "龙井虾仁",
+      "description": "茶香入馔，清鲜淡雅。"
+    },
+    {
+      "name": "片儿川",
+      "description": "雪菜笋片，一碗杭州日常。"
+    },
+    {
+      "name": "葱包桧",
+      "description": "铁板烤制，街头小食。"
+    },
+    {
+      "name": "定胜糕",
+      "description": "粉色印花，传统糕点。"
+    }
+  ]
+}

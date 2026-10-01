@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="诗画杭州 · 城市探索与行程助手" />
+  <title>景点探索｜诗画杭州</title>
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="libs/bootstrap-5.3.3.min.css" />
+  <link rel="stylesheet" href="css/common.css?v=4" />
+  <link rel="stylesheet" href="css/explore.css?v=2" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <img src="images/logo.svg" class="brand-icon" alt="" width="36" height="36" />诗画杭州
+      </a>
+      <button class="menu-button" aria-expanded="false" aria-controls="site-nav">
+        菜单
+      </button>
+      <nav id="site-nav" aria-label="主导航">
+        <a href="index.html">首页</a>
+        <a href="explore.html" class="is-current" aria-current="page">景点探索</a>
+        <a href="planner.html">我的行程</a>
+        <a href="dashboard.html">数据看板</a>
+        <a href="scene.html">三维展示</a>
+      </nav>
+    </div>
+  </header>
+  <div class="container">
+    <p id="storage-status" class="notice" role="status" hidden></p>
+    <p id="action-status" role="status" aria-live="polite"></p>
+  </div>
+  <main id="main-content">
+    <section class="section container">
+      <p class="eyebrow">景点与美食</p>
+      <h1>景点探索</h1>
+      <p class="intro">输入关键词或选择分类查找景点，可以收藏或加入行程。</p>
+      <div class="panel toolbar" id="explore-toolbar">
+        <label class="search-label" for="place-search">搜索景点、区域或关键词<input type="search" id="place-search"
+            placeholder="例如：西湖、茶、古桥" />
+        </label>
+        <div class="filter-row">
+          <button data-type="全部" aria-pressed="true" class="chip">
+            全部
+          </button>
+          <button data-type="自然风光" aria-pressed="false" class="chip">
+            自然风光
+          </button>
+          <button data-type="人文古迹" aria-pressed="false" class="chip">
+            人文古迹
+          </button>
+          <button data-type="市井街巷" aria-pressed="false" class="chip">
+            市井街巷
+          </button>
+          <label>收藏状态<select id="favorite-filter">
+              <option value="all">全部景点</option>
+              <option value="want">想去</option>
+              <option value="visited">已打卡</option>
+              <option value="saved">已收藏</option>
+            </select>
+          </label>
+          <button id="clear-filter" class="quiet">重置筛选</button>
+        </div>
+      </div>
+      <div class="section-heading-row">
+        <p id="result-count" role="status">正在加载景点…</p>
+      </div>
+      <div id="place-list" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3"></div>
+      <p id="empty-state" class="empty" hidden>
+        没有符合条件的景点，试试重置筛选。
+      </p>
+    </section>
+    <section class="section tint">
+      <div class="container">
+        <p class="eyebrow">杭州美食</p>
+        <h2>杭帮菜介绍</h2>
+        <p>餐饮费用可在「我的行程」手动记录，这里不提供实时价格。</p>
+        <div id="food-list" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3"></div>
+        <p id="food-status" role="status"></p>
+        <button data-retry="foods" class="quiet">重新加载美食</button>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <strong>诗画杭州</strong>
+      <p>前端期末大作业 · 信息与数据展示中心</p>
+      <a href="instructions.html">运行说明</a>
+    </div>
+  </footer>
+  <script src="libs/jquery-3.7.1.min.js"></script>
+  <script src="js/app.js?v=14"></script>
+  <script src="js/storage.js?v=4"></script>
+  <script src="js/places.js?v=4"></script>
+  <script src="js/explore.js?v=12"></script>
+</body>
+
+</html>
