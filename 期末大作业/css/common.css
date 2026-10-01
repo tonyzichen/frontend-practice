@@ -351,3 +351,46 @@ a {
   padding-left: calc(var(--bs-gutter-x) * 0.5);
   padding-right: calc(var(--bs-gutter-x) * 0.5);
 }
+
+@media (max-width: 900px) {
+  #site-nav a {
+    padding: 7px 10px;
+  }
+}
+@media (max-width: 600px) {
+  .nav-wrap {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px 0;
+  }
+  .menu-button {
+    display: block;
+    color: var(--accent);
+    background: #f5faf2;
+    border: 1px solid #c4d6bb;
+    padding: 4px 10px;
+  }
+  #site-nav {
+    flex-wrap: wrap;
+    display: none;
+    width: 100%;
+    justify-content: space-between;
+  }
+  #site-nav.is-open {
+    display: flex;
+  }
+  #site-nav a {
+    padding: 6px;
+    font-size: 14px;
+  }
+  .section-heading-row {
+    align-items: start;
+    flex-direction: column;
+  }
+  .section {
+    padding: 22px 0;
+  }
+  .panel {
+    padding: 16px;
+  }
+}
