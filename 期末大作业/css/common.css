@@ -394,3 +394,27 @@ a {
     padding: 16px;
   }
 }
+
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  .site-header,
+  .site-footer,
+  .skip-link,
+  button,
+  form,
+  #action-status,
+  #storage-status {
+    display: none !important;
+  }
+  .panel,
+  .place-card {
+    margin-bottom: 12px;
+    break-inside: avoid;
+  }
+  .row > .col {
+    width: 100%;
+  }
+}
