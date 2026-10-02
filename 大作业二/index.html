@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="杭州主题课堂综合作业，包含 JavaScript、DOM、事件、表单、动态渲染和本地存储练习。">
+  <title>杭州游览助手</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%232f6f73'/%3E%3Cpath d='M10 38 Q22 25 32 38 T54 38' fill='none' stroke='white' stroke-width='5'/%3E%3Ccircle cx='45' cy='18' r='7' fill='%23f4c95d'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header id="top">
+    <nav>
+      <a class="logo" href="#top">课堂综合作业</a>
+      <div class="nav-links">
+        <a href="#city">城市介绍</a>
+        <a href="#budget">旅行预算</a>
+        <a href="#places">地点收藏</a>
+      </div>
+    </nav>
+    <div class="banner">
+      <div class="banner-content">
+        <p class="banner-eyebrow">杭州游览助手</p>
+        <h1>从西湖出发，认识杭州</h1>
+        <p class="banner-description">沿着湖畔散步，走进古街与茶园，尝一尝地道的杭帮美食。<br>在这里了解城市风景、安排一日游花费，也记下你想去的地方。</p>
+        <ul class="banner-features" aria-label="网站功能">
+          <li>了解杭州</li>
+          <li>管理预算</li>
+          <li>收藏地点</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="city">
+      <h2>一、杭州城市介绍</h2>
+      <div class="two-columns">
+        <div>
+          <h3>人间天堂杭州</h3>
+          <p>杭州是浙江省省会，位于钱塘江下游和京杭大运河南端。这里山水相依、湖城合璧，既有深厚的历史文化，也有充满活力的数字经济。</p>
+          <p>西湖、京杭大运河和良渚古城遗址都是杭州的重要文化名片。龙井茶、杭帮菜和江南生活也让这座城市更有特色。</p>
+        </div>
+        <img src="images/hangzhou.jpeg" alt="杭州城市风景">
+      </div>
+
+      <table>
+        <caption>杭州基本信息</caption>
+        <tbody>
+          <tr><th>城市别名</th><td>临安、钱塘、武林、杭城</td></tr>
+          <tr><th>气候条件</th><td>亚热带季风气候，四季分明</td></tr>
+          <tr><th>代表景观</th><td>西湖、大运河、良渚古城、西溪湿地、灵隐寺</td></tr>
+          <tr><th>特色美食</th><td>西湖醋鱼、东坡肉、龙井虾仁、片儿川</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-title">推荐景点与美食</h3>
+      <div class="card-list">
+        <article><h3>西湖</h3><p>苏堤、白堤横贯碧波，是杭州最有代表性的风景。</p></article>
+        <article><h3>灵隐寺</h3><p>古刹藏于飞来峰旁，山林清幽，适合慢慢游览。</p></article>
+        <article><h3>良渚古城</h3><p>玉器、水利系统和城址遗存见证了古老文明。</p></article>
+        <article><h3>东坡肉</h3><p>慢火细炖、色泽红亮，是著名的杭州传统菜。</p></article>
+      </div>
+    </section>
+
+    <section id="budget">
+      <h2>二、杭州一日游预算工具</h2>
+      <p class="note">输入预算和消费记录，网页会自动计算总消费、剩余金额，并按类别整理明细。</p>
+      <form id="budget-form" class="inline-form">
+        <label>地点或项目<input id="cost-place" type="text" placeholder="例如：西湖游船" required></label>
+        <label>消费类别
+          <select id="cost-category">
+            <option>交通</option><option>门票</option><option>餐饮</option><option>购物</option><option>其他</option>
+          </select>
+        </label>
+        <label>金额（元）<input id="cost-amount" type="number" min="0.01" step="0.01" placeholder="例如：55" required></label>
+        <button type="submit">添加消费</button>
+      </form>
+      <div class="budget-line">
+        <label>今日预算：<input id="budget-input" type="number" min="1" step="1" value="300"> 元</label>
+        <button id="save-budget" type="button">保存预算</button>
+      </div>
+      <p id="budget-tip" class="tip" aria-live="polite"></p>
+      <div id="budget-summary" class="summary"></div>
+      <ul id="cost-list" class="record-list"></ul>
+    </section>
+
+    <section id="places">
+      <h2>三、杭州地点收藏</h2>
+      <p class="note">练习表单、事件委托、筛选、JSON 导出和 localStorage 本地存储。</p>
+      <form id="place-form" class="form-grid">
+        <label>地点名称<input id="place-name" type="text" placeholder="例如：西湖断桥" required></label>
+        <label>所在区域<input id="place-area" type="text" placeholder="例如：西湖区" required></label>
+        <label>地点类型
+          <select id="place-type"><option>自然风光</option><option>人文古迹</option><option>美食探店</option><option>城市漫步</option></select>
+        </label>
+        <label>个人评分<input id="place-rating" type="number" min="0" max="5" step="0.1" placeholder="0～5" required></label>
+        <button type="submit">添加地点</button>
+      </form>
+      <p id="place-tip" class="tip" aria-live="polite"></p>
+      <div class="toolbar" id="place-filters">
+        <button class="active" type="button" data-filter="all">全部</button>
+        <button type="button" data-filter="want">想去</button>
+        <button type="button" data-filter="visited">已打卡</button>
+        <button id="export-button" type="button">导出 JSON</button>
+      </div>
+      <div class="table-box">
+        <table>
+          <thead><tr><th>地点</th><th>区域</th><th>类型</th><th>评分</th><th>状态</th><th>操作</th></tr></thead>
+          <tbody id="place-list"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>软件开发综合实践 · 大作业二</p>
+    <a href="#top">返回顶部</a>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>

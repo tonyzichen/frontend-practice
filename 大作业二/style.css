@@ -1,0 +1,310 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: #333;
+  background: #f5f7f7;
+  font: 16px/1.6 Arial, "Microsoft YaHei", sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 6%;
+  background: white;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  color: #23676d;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.nav-links a {
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  color: #237a80;
+}
+
+.banner {
+  min-height: 270px;
+  display: flex;
+  align-items: center;
+  padding: 45px 14px;
+  color: white;
+  background: #37777b;
+  justify-content: center;
+  text-align: center;
+}
+
+.banner-content {
+  width: 100%;
+  max-width: calc(1050px - 28px);
+  padding: 30px 36px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.banner h1 {
+  margin: 0 0 10px;
+  font-size: 38px;
+}
+
+.banner-eyebrow {
+  margin: 0 0 8px;
+  color: #d4e9e7;
+  font-size: 14px;
+  letter-spacing: 3px;
+}
+
+.banner-description {
+  margin: 0;
+  color: #edf5f4;
+  line-height: 1.9;
+}
+
+.banner-features {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+  color: #d4e9e7;
+  font-size: 14px;
+}
+
+main {
+  max-width: 1050px;
+  margin: auto;
+}
+
+section {
+  margin: 28px 14px;
+  padding: 24px;
+  background: white;
+  border: 1px solid #d5dddd;
+}
+
+h2 {
+  margin-top: 0;
+  padding-bottom: 8px;
+  color: #23676d;
+  border-bottom: 2px solid #77aeb1;
+}
+
+h3 {
+  color: #315d61;
+}
+
+.sub-title {
+  margin-top: 28px;
+}
+
+.note {
+  color: #666;
+}
+
+.two-columns {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 22px;
+  align-items: center;
+}
+
+.two-columns img {
+  width: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+}
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.card-list article {
+  padding: 14px;
+  background: #eef5f4;
+  border: 1px solid #cbdedd;
+}
+
+.card-list h3,
+.card-list p {
+  margin-top: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+caption {
+  margin: 20px 0 8px;
+  font-weight: bold;
+  text-align: left;
+}
+
+th,
+td {
+  padding: 9px;
+  border: 1px solid #d4dddd;
+  text-align: left;
+}
+
+th {
+  background: #e8f1f0;
+}
+
+label {
+  display: grid;
+  gap: 4px;
+}
+
+input,
+select,
+button {
+  padding: 8px;
+  border: 1px solid #9fb5b5;
+  border-radius: 2px;
+  font: inherit;
+}
+
+button {
+  color: white;
+  background: #2e7479;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #215b5f;
+}
+
+.inline-form,
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  align-items: end;
+  padding: 15px;
+  background: #f3f7f7;
+  border: 1px solid #d5e1e0;
+}
+
+.inline-form button,
+.form-grid > button {
+  height: 43px;
+}
+
+.budget-line,
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: end;
+  margin: 15px 0;
+}
+
+.budget-line label {
+  display: block;
+}
+
+.budget-line input {
+  width: 120px;
+}
+
+.tip {
+  min-height: 25px;
+  color: #b12727;
+}
+
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.summary span {
+  padding: 7px 12px;
+  background: #e7f2ef;
+  border: 1px solid #bcd6d1;
+}
+
+.record-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.record-list li {
+  margin: 8px 0;
+  padding: 10px;
+  background: #fafafa;
+  border: 1px solid #ddd;
+}
+
+.record-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.small-button,
+td button {
+  margin: 2px;
+  padding: 5px 8px;
+  color: #23494c;
+  background: #e5eeee;
+}
+
+.danger {
+  color: #8c2424 !important;
+  background: #f7e4e4 !important;
+}
+
+.toolbar .active {
+  background: #174f53;
+}
+
+.empty {
+  color: #777;
+  text-align: center;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 8%;
+  color: white;
+  background: #2e6064;
+}
+
+footer p {
+  margin: 0;
+}
+
+
