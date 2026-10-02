@@ -1,0 +1,92 @@
+/* 行程、预算表单和收藏 */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 18px 0;
+}
+
+.inline-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 10px;
+}
+
+.inline-form label {
+  flex: 1;
+  min-width: 150px;
+}
+
+.record-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.record-list li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  overflow-wrap: anywhere;
+}
+
+.record-list li.empty {
+  display: block;
+  padding: 20px;
+}
+
+.record-list span {
+  display: block;
+}
+
+.record-list button {
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: white;
+  color: var(--accent);
+}
+
+.summary {
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin: 18px 0;
+  padding: 12px;
+  background: var(--tint);
+}
+
+.summary strong {
+  display: block;
+  font-size: 22px;
+}
+
+.danger {
+  color: var(--error);
+}
+
+#favorites-list {
+  margin-top: 16px;
+}
+
+#favorites-list > p {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media print {
+  #favorites-list .actions {
+    display: none;
+  }
+}

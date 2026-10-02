@@ -1,0 +1,32 @@
+[
+  {
+    "label": "西湖游船",
+    "category": "交通",
+    "amountCents": 5500,
+    "placeId": "westlake"
+  },
+  {
+    "label": "灵隐寺门票",
+    "category": "门票",
+    "amountCents": 4500,
+    "placeId": "lingyin"
+  },
+  {
+    "label": "龙井茶点",
+    "category": "餐饮",
+    "amountCents": 6850,
+    "placeId": "longjing"
+  },
+  {
+    "label": "河坊街小吃",
+    "category": "餐饮",
+    "amountCents": 3600,
+    "placeId": "hefang"
+  },
+  {
+    "label": "地铁往返",
+    "category": "交通",
+    "amountCents": 1200,
+    "placeId": null
+  }
+]

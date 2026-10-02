@@ -32,6 +32,18 @@ function escapeHtml(value) {
   });
 }
 
+function parseMoney(value) {
+  const text = String(value).trim();
+  if (!/^\d{1,7}(\.\d{1,2})?$/.test(text)) {
+    throw new Error("金额应为非负数字，最多两位小数。");
+  }
+  const amountCents = Math.round(Number(text) * 100);
+  if (!validCents(amountCents)) {
+    throw new Error("金额不能超过 1000000 元。");
+  }
+  return amountCents;
+}
+
 function formatMoney(amountCents) {
   return (amountCents / 100).toFixed(2);
 }
@@ -66,6 +78,10 @@ async function loadJson(url) {
   }
 }
 
+// 各页面使用的公共工具。
+HZ.notify = notify;
+HZ.escape = escapeHtml;
+HZ.money = parseMoney;
 HZ.format = formatMoney;
 HZ.loadJson = loadJson;
 

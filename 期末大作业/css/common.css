@@ -2,11 +2,14 @@
 
 :root {
   --bg: #f6faf5;
+  --paper: #fff;
   --tint: #edf5e9;
   --ink: #354333;
   --muted: #687564;
   --accent: #527b49;
   --line: #dce7d7;
+  --gold: #bc9355;
+  --error: #c0392b;
 }
 
 * {
@@ -290,6 +293,10 @@ a {
   background: var(--tint);
 }
 
+.section-space {
+  margin-top: 20px;
+}
+
 .site-footer {
   padding: 24px 0;
   border-top: 1px solid var(--line);
@@ -342,7 +349,8 @@ a {
 }
 
 .row > .col > .info-card,
-.row > .col > .place-card {
+.row > .col > .place-card,
+.row > .col > .panel {
   height: 100%;
 }
 
@@ -352,6 +360,15 @@ a {
   padding-right: calc(var(--bs-gutter-x) * 0.5);
 }
 
+/* 公共的动画偏好与导航适配 */
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .chip,
+  .quiet,
+  #site-nav a {
+    transition: none;
+  }
+}
 @media (max-width: 900px) {
   #site-nav a {
     padding: 7px 10px;
@@ -394,7 +411,6 @@ a {
     padding: 16px;
   }
 }
-
 @media print {
   body {
     background: white;
