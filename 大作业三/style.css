@@ -1,0 +1,84 @@
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  color: #333;
+  background: #f5f3e9;
+  font-family: "Microsoft YaHei", sans-serif;
+  line-height: 1.7;
+}
+
+header {
+  padding: 35px 20px;
+  color: white;
+  background: #397b83;
+  text-align: center;
+}
+
+header h1 { margin: 0; font-size: 36px; }
+header p { margin: 6px 0 18px; }
+
+nav a {
+  display: inline-block;
+  margin: 4px 8px;
+  color: white;
+}
+
+main { width: 90%; max-width: 1100px; margin: auto; }
+
+section {
+  margin: 28px 0;
+  padding: 24px;
+  background: white;
+  border: 1px solid #ddd;
+}
+
+h2 { color: #28636b; border-bottom: 2px solid #80b3aa; }
+h3 { font-size: 17px; }
+
+.card-row, .place-list, .chart-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.card, .place-card, .chart-panel {
+  padding: 15px;
+  border: 1px solid #ccc;
+  background: #fafafa;
+}
+
+.card strong { display: block; color: #397b83; font-size: 28px; }
+.card span { font-size: 14px; }
+
+.tools { margin-bottom: 12px; }
+
+input, button {
+  margin: 4px;
+  padding: 8px 12px;
+  border: 1px solid #397b83;
+  background: white;
+}
+
+button { cursor: pointer; }
+button.active { color: white; background: #397b83; }
+
+.place-card { cursor: pointer; }
+.place-card.selected { border: 2px solid #e28b45; background: #fff6e9; }
+.place-card h3 { margin: 4px 0; color: #28636b; }
+.place-card small { color: #666; }
+
+.chart-row { grid-template-columns: 1fr 1fr; margin-top: 18px; }
+.chart { height: 340px; }
+.scene-box { width: 100%; height: 460px; border: 1px solid #999; background: #b9dce8; }
+.scene-box canvas { display: block; }
+
+footer { padding: 20px; color: white; background: #397b83; text-align: center; }
+
+@media (max-width: 750px) {
+  .card-row, .place-list, .chart-row { grid-template-columns: 1fr; }
+  section { padding: 15px; }
+  .scene-box { height: 360px; }
+}
