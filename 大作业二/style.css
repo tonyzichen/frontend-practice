@@ -307,4 +307,43 @@ footer p {
   margin: 0;
 }
 
+@media (max-width: 760px) {
+  nav,
+  .two-columns {
+    display: block;
+  }
 
+  .nav-links {
+    margin-top: 10px;
+  }
+
+  .banner h1 {
+    font-size: 30px;
+  }
+
+  .banner {
+    padding: 32px 14px;
+  }
+
+  .banner-content {
+    padding: 24px 18px;
+  }
+
+  section {
+    padding: 16px;
+  }
+
+  .two-columns img {
+    margin-top: 12px;
+  }
+
+  .card-list,
+  .inline-form,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .table-box {
+    overflow-x: auto;
+  }
+}
