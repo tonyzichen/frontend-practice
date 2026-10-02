@@ -59,6 +59,13 @@
         </div>
       </div>
     </section>
+
+    <section id="three">
+      <h2>Three.js 三维西湖</h2>
+      <p>使用简单几何体搭建湖面、远山、雷峰塔、小桥和游船。可拖动旋转，滚轮缩放。</p>
+      <div id="three-scene" class="scene-box"></div>
+    </section>
+
   </main>
 
   <footer>前端课堂大作业 · 杭州主题综合网页</footer>
@@ -66,8 +73,11 @@
   <script src="libs/jquery-3.7.1.min.js"></script>
   <script src="libs/echarts.min.js"></script>
   <script src="libs/chart.umd.js"></script>
+  <script src="libs/three.min.js"></script>
+  <script src="libs/OrbitControls.js"></script>
+  <script>
+    window.CourseTHREE = window.THREE;
+  </script>
   <script src="app.js"></script>
-
-
 </body>
 </html>
