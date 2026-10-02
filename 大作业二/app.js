@@ -176,5 +176,16 @@ placeFilters.addEventListener('click', (event) => {
   renderPlaces();
 });
 
+document.querySelector('#export-button').addEventListener('click', () => {
+  const blob = new Blob([JSON.stringify(places, null, 2)], { type: 'application/json;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'hangzhou-places.json';
+  link.click();
+  URL.revokeObjectURL(url);
+  placeTip.textContent = '地点数据已导出为 JSON 文件。';
+});
+
 renderCosts();
 renderPlaces();
