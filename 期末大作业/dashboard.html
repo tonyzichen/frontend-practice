@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="诗画杭州 · 城市探索与行程助手" />
+  <title>数据看板｜诗画杭州</title>
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="libs/bootstrap-5.3.3.min.css" />
+  <link rel="stylesheet" href="css/common.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <img src="images/logo.svg" class="brand-icon" alt="" width="36" height="36" />诗画杭州
+      </a>
+      <button class="menu-button" aria-expanded="false" aria-controls="site-nav">
+        菜单
+      </button>
+      <nav id="site-nav" aria-label="主导航">
+        <a href="index.html">首页</a>
+        <a href="explore.html">景点探索</a>
+        <a href="planner.html">我的行程</a>
+        <a href="dashboard.html" class="is-current" aria-current="page">数据看板</a>
+        <a href="scene.html">三维展示</a>
+      </nav>
+    </div>
+  </header>
+  <div class="container">
+    <p id="storage-status" class="notice" role="status" hidden></p>
+    <p id="action-status" role="status" aria-live="polite"></p>
+  </div>
+  <main id="main-content">
+    <section class="section container" id="insights">
+      <p class="eyebrow">客流与个人统计</p>
+      <h1>数据看板</h1>
+      <p class="intro">
+        同一组课堂客流数据，观察月度差异与变化趋势。个人统计来自你的本地记录。
+      </p>
+      <p id="dashboard-status" role="status"></p>
+      <div id="stat-cards" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 section-space"></div>
+      <label>选择观察月份<select id="chart-month"></select> </label>
+      <p id="month-note" role="status"></p>
+      <div class="row row-cols-1 row-cols-lg-2 g-3 mt-1">
+        <div class="col">
+          <article class="panel">
+            <h2>月度客流对比</h2>
+            <p class="muted">柱状图 · 单位：万人次 · 从零起轴</p>
+            <div id="spot-chart" class="chart" role="img" aria-label="西湖月度客流柱状图"></div>
+          </article>
+        </div>
+        <div class="col">
+          <article class="panel">
+            <h2>客流变化趋势</h2>
+            <p class="muted">折线图 · 单位：万人次 · 原始月份顺序</p>
+            <div id="trend-chart" class="chart" role="img" aria-label="西湖月度客流折线图"></div>
+          </article>
+        </div>
+      </div>
+      <p id="chart-source" class="muted"></p>
+      <div class="row row-cols-1 row-cols-lg-2 g-3 section-space">
+        <div class="col">
+          <article class="panel">
+            <h2>我的消费分类</h2>
+            <div id="expense-chart" class="chart"></div>
+            <p id="expense-chart-note"></p>
+          </article>
+        </div>
+        <div class="col">
+          <article class="panel">
+            <h2>我的收藏状态</h2>
+            <div id="favorite-chart" class="chart"></div>
+            <p id="favorite-chart-note"></p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <strong>诗画杭州</strong>
+      <p>前端期末大作业 · 信息与数据展示中心</p>
+      <a href="instructions.html">运行说明</a>
+    </div>
+  </footer>
+  <script src="libs/jquery-3.7.1.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="libs/echarts.min.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+/* 数据看板的图表样式 */
+
+.chart {
+  height: 320px;
+  width: 100%;
+}
+
+#chart-month {
+  max-width: 200px;
+}
+
+@media (max-width: 600px) {
+  .chart {
+    height: 300px;
+  }
+}
