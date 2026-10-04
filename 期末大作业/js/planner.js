@@ -175,7 +175,7 @@ $(function () {
       if (placeId && !HZ.place(placeId)) {
         throw new Error("请选择有效景点。");
       }
-      if (!categories.includes(category)) {
+      if (!HZ.categories.includes(category)) {
         throw new Error("请选择有效费用类别。");
       }
       // 时间戳加随机数，用来区分每条费用记录。
@@ -229,8 +229,8 @@ $(function () {
           throw new Error("样例项目名称不正确。");
         }
         if (
-          !categories.includes(cost.category) ||
-          !validCents(cost.amountCents)
+          !HZ.categories.includes(cost.category) ||
+          !HZ.validCents(cost.amountCents)
         ) {
           throw new Error("样例类别或金额不正确。");
         }

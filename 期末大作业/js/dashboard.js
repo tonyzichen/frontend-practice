@@ -18,7 +18,7 @@ $(function () {
     const seenMonths = [];
     for (let index = 0; index < data.months.length; index++) {
       const month = data.months[index];
-      if (!validMonth(month)) {
+      if (!HZ.validMonth(month)) {
         throw new Error("客流月份名称不正确。");
       }
       if (seenMonths.includes(month)) {
@@ -251,10 +251,10 @@ $(function () {
     const amountNotes = [];
     for (
       let categoryIndex = 0;
-      categoryIndex < categories.length;
+      categoryIndex < HZ.categories.length;
       categoryIndex++
     ) {
-      const category = categories[categoryIndex];
+      const category = HZ.categories[categoryIndex];
       let totalCents = 0;
       for (
         let expenseIndex = 0;
@@ -309,7 +309,7 @@ $(function () {
             name: "元",
             splitLine: { lineStyle: { color: colors.line } },
           },
-          yAxis: { type: "category", data: categories },
+          yAxis: { type: "category", data: HZ.categories },
           series: [
             {
               type: "bar",

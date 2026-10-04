@@ -58,9 +58,9 @@ function findFavorite(id) {
 }
 
 function makePlaceCard(place) {
-  const favorite = findFavorite(place.id);
+  const favorite = HZ.favorite(place.id);
   const included = HZ.state.itinerary.includes(place.id);
-  const placeId = escapeHtml(place.id);
+  const placeId = HZ.escape(place.id);
   let favoriteText = "收藏";
   let favoritePressed = "false";
   let itineraryText = "加入行程";
@@ -91,20 +91,20 @@ function makePlaceCard(place) {
     buttons += `<a class="quiet" href="scene.html?place=${encodeURIComponent(place.id)}#scene">查看三维</a>`;
   }
   return `<div class="col"><article class="place-card"><div class="place-body">
-    <p class="eyebrow">${escapeHtml(place.type)} · ${escapeHtml(place.area)}${statusText}</p>
-    <h3>${escapeHtml(place.name)}</h3><p>${escapeHtml(place.description)}</p>
-    <p class="muted small">${escapeHtml(place.ticket)}</p><div class="actions">${buttons}</div>
+    <p class="eyebrow">${HZ.escape(place.type)} · ${HZ.escape(place.area)}${statusText}</p>
+    <h3>${HZ.escape(place.name)}</h3><p>${HZ.escape(place.description)}</p>
+    <p class="muted small">${HZ.escape(place.ticket)}</p><div class="actions">${buttons}</div>
   </div></article></div>`;
 }
 
 // 首页、探索和行程页共用卡片操作，显示列表由各页面负责。
 function changeCard(action, id) {
-  const place = findPlace(id);
+  const place = HZ.place(id);
   if (!place) {
-    notify("景点资料不可用，请刷新页面。");
+    HZ.notify("景点资料不可用，请刷新页面。");
     return false;
   }
-  const favorite = findFavorite(id);
+  const favorite = HZ.favorite(id);
   if (action === "favorite") {
     if (favorite) {
       for (let index = 0; index < HZ.state.favorites.length; index++) {
@@ -125,7 +125,7 @@ function changeCard(action, id) {
   } else if (action === "itinerary" && !HZ.state.itinerary.includes(id)) {
     HZ.state.itinerary.push(id);
   }
-  const saved = saveData();
+  const saved = HZ.saveData();
   let message = place.name + "：记录已更新。";
   if (action === "itinerary") {
     message = place.name + "：已加入行程。";
@@ -133,7 +133,7 @@ function changeCard(action, id) {
   if (!saved) {
     message = place.name + "：更改尚未保存，仅在当前页面有效，请先导出当前记录。";
   }
-  notify(message);
+  HZ.notify(message);
   // 操作已应用到当前页面，即使保存失败也要刷新卡片。
   return true;
 }

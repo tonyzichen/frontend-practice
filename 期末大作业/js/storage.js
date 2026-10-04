@@ -14,10 +14,10 @@ HZ.state = {
 
 // 先检查读到的数据，再把它放入个人记录。
 function validSavedData(data) {
-  if (!data || !validCents(data.budgetCents)) {
+  if (!data || !HZ.validCents(data.budgetCents)) {
     return false;
   }
-  if (!validMonth(data.selectedMonth)) {
+  if (!HZ.validMonth(data.selectedMonth)) {
     return false;
   }
   if (
@@ -56,8 +56,8 @@ function validSavedData(data) {
       return false;
     }
     if (
-      !categories.includes(expense.category) ||
-      !validCents(expense.amountCents)
+      !HZ.categories.includes(expense.category) ||
+      !HZ.validCents(expense.amountCents)
     ) {
       return false;
     }

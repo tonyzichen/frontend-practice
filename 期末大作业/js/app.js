@@ -1,6 +1,6 @@
 // 公共工具和多个页面都会用到的固定选项。
 const HZ = {};
-const categories = ["交通", "门票", "餐饮", "其他"];
+HZ.categories = ["交通", "门票", "餐饮", "其他"];
 
 // 只检查月份名称是否合法，不限制客流数据的排列顺序。
 function validMonth(value) {
@@ -38,7 +38,7 @@ function parseMoney(value) {
     throw new Error("金额应为非负数字，最多两位小数。");
   }
   const amountCents = Math.round(Number(text) * 100);
-  if (!validCents(amountCents)) {
+  if (!HZ.validCents(amountCents)) {
     throw new Error("金额不能超过 1000000 元。");
   }
   return amountCents;
@@ -79,6 +79,8 @@ async function loadJson(url) {
 }
 
 // 各页面使用的公共工具。
+HZ.validMonth = validMonth;
+HZ.validCents = validCents;
 HZ.notify = notify;
 HZ.escape = escapeHtml;
 HZ.money = parseMoney;
