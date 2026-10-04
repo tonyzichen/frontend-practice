@@ -124,12 +124,16 @@ function changeCard(action, id) {
   } else if (action === "itinerary" && !HZ.state.itinerary.includes(id)) {
     HZ.state.itinerary.push(id);
   }
-  saveData();
+  const saved = saveData();
   let message = place.name + "：记录已更新。";
   if (action === "itinerary") {
     message = place.name + "：已加入行程。";
   }
+  if (!saved) {
+    message = place.name + "：更改尚未保存，仅在当前页面有效，请先导出当前记录。";
+  }
   notify(message);
+  // 操作已应用到当前页面，即使保存失败也要刷新卡片。
   return true;
 }
 
