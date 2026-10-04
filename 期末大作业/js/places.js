@@ -78,23 +78,63 @@ function makePlaceCard(place) {
     itineraryText = "已加入行程";
     itineraryDisabled = "disabled";
   }
-  let buttons = `<button data-action="favorite" data-id="${placeId}" class="chip" aria-pressed="${favoritePressed}">${favoriteText}</button>`;
-  buttons += `<button data-action="itinerary" data-id="${placeId}" class="chip" ${itineraryDisabled}>${itineraryText}</button>`;
+  let buttons = `
+    <button
+      data-action="favorite"
+      data-id="${placeId}"
+      class="chip"
+      aria-pressed="${favoritePressed}"
+    >
+      ${favoriteText}
+    </button>`;
+  buttons += `
+    <button
+      data-action="itinerary"
+      data-id="${placeId}"
+      class="chip"
+      ${itineraryDisabled}
+    >
+      ${itineraryText}
+    </button>`;
   if (favorite) {
     let visitedText = "标记打卡";
     if (favorite.status === "visited") {
       visitedText = "设为想去";
     }
-    buttons += `<button data-action="visited" data-id="${placeId}" class="quiet">${visitedText}</button>`;
+    buttons += `
+      <button
+        data-action="visited"
+        data-id="${placeId}"
+        class="quiet"
+      >
+        ${visitedText}
+      </button>`;
   }
   if (place.sceneKey) {
-    buttons += `<a class="quiet" href="scene.html?place=${encodeURIComponent(place.id)}#scene">查看三维</a>`;
+    buttons += `
+      <a
+        class="quiet"
+        href="scene.html?place=${encodeURIComponent(place.id)}#scene"
+      >
+        查看三维
+      </a>`;
   }
-  return `<div class="col"><article class="place-card"><div class="place-body">
-    <p class="eyebrow">${HZ.escape(place.type)} · ${HZ.escape(place.area)}${statusText}</p>
-    <h3>${HZ.escape(place.name)}</h3><p>${HZ.escape(place.description)}</p>
-    <p class="muted small">${HZ.escape(place.ticket)}</p><div class="actions">${buttons}</div>
-  </div></article></div>`;
+  return `
+    <div class="col">
+      <article class="place-card">
+        <div class="place-body">
+          <p class="eyebrow">
+            ${HZ.escape(place.type)} · ${HZ.escape(place.area)}${statusText}
+          </p>
+          <h3>${HZ.escape(place.name)}</h3>
+          <p>${HZ.escape(place.description)}</p>
+          <p class="muted small">${HZ.escape(place.ticket)}</p>
+          <div class="actions">
+            ${buttons}
+          </div>
+        </div>
+      </article>
+    </div>`;
 }
 
 // 首页、探索和行程页共用卡片操作，显示列表由各页面负责。
