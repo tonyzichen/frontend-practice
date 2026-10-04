@@ -1,143 +1,107 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="description" content="诗画杭州 · 城市探索与行程助手" />
-    <title>三维展示｜诗画杭州</title>
-    <link rel="icon" href="images/logo.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="libs/bootstrap-5.3.3.min.css" />
-    <link rel="stylesheet" href="css/common.css" />
-    <link rel="stylesheet" href="css/scene.css" />
-  </head>
 
-  <body>
-    <a class="skip-link" href="#main-content">跳到主要内容</a>
-    <header class="site-header">
-      <div class="container nav-wrap">
-        <a class="brand" href="index.html"
-          ><img
-            src="images/logo.svg"
-            class="brand-icon"
-            alt=""
-            width="36"
-            height="36"
-          />诗画杭州</a
-        >
-        <button
-          class="menu-button"
-          aria-expanded="false"
-          aria-controls="site-nav"
-        >
-          菜单
-        </button>
-        <nav id="site-nav" aria-label="主导航">
-          <a href="index.html">首页</a>
-          <a href="explore.html">景点探索</a>
-          <a href="planner.html">我的行程</a>
-          <a href="dashboard.html">数据看板</a>
-          <a href="scene.html" class="is-current" aria-current="page"
-            >三维展示</a
-          >
-        </nav>
-      </div>
-    </header>
-    <div class="container">
-      <p id="storage-status" class="notice" role="status" hidden></p>
-      <p id="action-status" role="status" aria-live="polite"></p>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="诗画杭州 · 城市探索与行程助手" />
+  <title>三维展示｜诗画杭州</title>
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="libs/bootstrap-5.3.3.min.css" />
+  <link rel="stylesheet" href="css/common.css" />
+  <link rel="stylesheet" href="css/scene.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <img src="images/logo.svg" class="brand-icon" alt="" width="36" height="36" />诗画杭州
+      </a>
+      <button class="menu-button" aria-expanded="false" aria-controls="site-nav">
+        菜单
+      </button>
+      <nav id="site-nav" aria-label="主导航">
+        <a href="index.html">首页</a>
+        <a href="explore.html">景点探索</a>
+        <a href="planner.html">我的行程</a>
+        <a href="dashboard.html">数据看板</a>
+        <a href="scene.html" class="is-current" aria-current="page">三维展示</a>
+      </nav>
     </div>
-    <main id="main-content">
-      <section class="section tint" id="scene">
-        <div class="container">
-          <p class="eyebrow">三维展示</p>
-          <h1>西湖简单三维场景</h1>
-          <p>
-            拖动旋转，滚轮或双指缩放，点击湖面、塔或桥选择地标。模型为几何示意，不代表真实形制与测绘比例。
-          </p>
-          <div class="row g-4 scene-layout">
-            <aside class="col-12 col-lg-3">
-              <div class="landmark-panel">
-                <h2>选择地标</h2>
-                <p class="muted">选择一处地标，切换场景视角。</p>
-                <div class="landmark-list" role="group" aria-label="地标选择">
-                  <button
-                    data-landmark="westlake"
-                    class="landmark-button"
-                    aria-pressed="false"
-                  >
-                    <span class="landmark-number" aria-hidden="true">01</span>
-                    <span><strong>西湖</strong><small>湖面与山水</small></span>
-                  </button>
-                  <button
-                    data-landmark="leifengta"
-                    class="landmark-button"
-                    aria-pressed="false"
-                  >
-                    <span class="landmark-number" aria-hidden="true">02</span>
-                    <span
-                      ><strong>雷峰塔</strong><small>湖畔的塔影</small></span
-                    >
-                  </button>
-                  <button
-                    data-landmark="duanqiao"
-                    class="landmark-button"
-                    aria-pressed="false"
-                  >
-                    <span class="landmark-number" aria-hidden="true">03</span>
-                    <span
-                      ><strong>断桥</strong><small>白堤上的古桥</small></span
-                    >
-                  </button>
-                </div>
+  </header>
+  <div class="container">
+    <p id="storage-status" class="notice" role="status" hidden></p>
+    <p id="action-status" role="status" aria-live="polite"></p>
+  </div>
+  <main id="main-content">
+    <section class="section tint" id="scene">
+      <div class="container">
+        <p class="eyebrow">三维展示</p>
+        <h1>西湖简单三维场景</h1>
+        <p>
+          拖动旋转，滚轮或双指缩放，点击湖面、塔或桥选择地标。模型为几何示意，不代表真实形制与测绘比例。
+        </p>
+        <div class="row g-4 scene-layout">
+          <aside class="col-12 col-lg-3">
+            <div class="landmark-panel">
+              <h2>选择地标</h2>
+              <p class="muted">选择一处地标，切换场景视角。</p>
+              <div class="landmark-list" role="group" aria-label="地标选择">
+                <button data-landmark="westlake" class="landmark-button" aria-pressed="false">
+                  <span class="landmark-number" aria-hidden="true">01</span>
+                  <span><strong>西湖</strong><small>湖面与山水</small></span>
+                </button>
+                <button data-landmark="leifengta" class="landmark-button" aria-pressed="false">
+                  <span class="landmark-number" aria-hidden="true">02</span>
+                  <span><strong>雷峰塔</strong><small>湖畔的塔影</small></span>
+                </button>
+                <button data-landmark="duanqiao" class="landmark-button" aria-pressed="false">
+                  <span class="landmark-number" aria-hidden="true">03</span>
+                  <span><strong>断桥</strong><small>白堤上的古桥</small></span>
+                </button>
               </div>
-            </aside>
-            <div class="col-12 col-lg-9">
-              <div class="scene-viewer">
-                <div class="scene-toolbar">
-                  <div class="viewer-title">
-                    <h2>场景预览</h2>
-                    <p>拖动旋转 · 滚轮或双指缩放</p>
+            </div>
+          </aside>
+          <div class="col-12 col-lg-9">
+            <div class="scene-viewer">
+              <div class="scene-toolbar">
+                <div class="viewer-title">
+                  <h2>场景预览</h2>
+                  <p>拖动旋转 · 滚轮或双指缩放</p>
+                </div>
+                <div class="viewer-tools" role="group" aria-label="视图与动画控制">
+                  <div class="viewer-control">
+                    <span>视角</span><button id="reset-scene" class="quiet">重置视角</button>
                   </div>
-                  <div
-                    class="viewer-tools"
-                    role="group"
-                    aria-label="视图与动画控制"
-                  >
-                    <div class="viewer-control">
-                      <span>视角</span
-                      ><button id="reset-scene" class="quiet">重置视角</button>
-                    </div>
-                    <div class="viewer-control">
-                      <span>小船动画</span
-                      ><button
-                        id="pause-scene"
-                        class="quiet"
-                        aria-pressed="false"
-                      >
-                        暂停动画
-                      </button>
-                    </div>
+                  <div class="viewer-control">
+                    <span>小船动画</span><button id="pause-scene" class="quiet" aria-pressed="false">
+                      暂停动画
+                    </button>
                   </div>
                 </div>
-                <div id="westlake-scene"></div>
-                <p id="scene-status" role="status"></p>
               </div>
+              <div id="westlake-scene"></div>
+              <p id="scene-status" role="status"></p>
             </div>
           </div>
         </div>
-      </section>
-    </main>
-    <footer class="site-footer">
-      <div class="container">
-        <strong>诗画杭州</strong>
-        <p>前端期末大作业 · 信息与数据展示中心</p>
       </div>
-    </footer>
-    <script src="libs/jquery-3.7.1.min.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/storage.js"></script>
-    <script src="libs/three.min.js"></script>
-    <script src="libs/OrbitControls.js"></script>
-    <script src="js/scene.js"></script>
-  </body>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <strong>诗画杭州</strong>
+      <p>前端期末大作业 · 信息与数据展示中心</p>
+    </div>
+  </footer>
+  <script src="libs/jquery-3.7.1.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="libs/three.min.js"></script>
+  <script src="libs/OrbitControls.js"></script>
+  <script src="js/scene.js"></script>
+</body>
+
 </html>
