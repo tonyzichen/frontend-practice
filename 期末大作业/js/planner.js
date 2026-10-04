@@ -155,7 +155,7 @@ $(function () {
       $("#budget-message").text(
         saved
           ? "预算已更新并保存。"
-          : "预算尚未保存，仅在当前页面有效，请导出 JSON 备份。",
+          : "预算尚未保存。" + HZ.unsavedHint(),
       );
     } catch (error) {
       $("#budget-message").text(error.message);
@@ -195,7 +195,7 @@ $(function () {
       $("#budget-message").text(
         saved
           ? "费用已添加并保存（允许 0 元）。"
-          : "费用尚未保存，仅在当前页面有效，请导出 JSON 备份。",
+          : "费用尚未保存。" + HZ.unsavedHint(),
       );
     } catch (error) {
       $("#budget-message").text(error.message);
@@ -268,7 +268,7 @@ $(function () {
       showBudget();
       showExpenses();
       $("#budget-message").text(
-        `${saved ? "已载入并保存" : "仅在当前页面载入，尚未保存"} ${costList.length} 条课堂样例，合计 ${HZ.format(totalCostCents)} 元；重复点击不会重复添加。这些金额不是实时价格。${saved ? "" : "请导出 JSON 备份。"}`,
+        `${saved ? "已载入并保存" : "仅在当前页面载入，尚未保存"} ${costList.length} 条课堂样例，合计 ${HZ.format(totalCostCents)} 元；重复点击不会重复添加。这些金额不是实时价格。${saved ? "" : HZ.unsavedHint()}`,
       );
     } catch (error) {
       $("#budget-message").text(error.message);

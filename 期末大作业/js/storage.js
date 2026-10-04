@@ -68,6 +68,15 @@ function validSavedData(data) {
   return true;
 }
 
+// 只有行程页提供导出入口，其他页面只说明未保存更改的有效范围。
+function getUnsavedHint() {
+  let message = "未保存的更改仅在当前页面有效，刷新或离开页面后将丢失。";
+  if (document.getElementById("export-button")) {
+    message += "请在离开前点击「导出 JSON」备份。";
+  }
+  return message;
+}
+
 function showStorageMessage(message) {
   $("#storage-status")
     .text(message)
@@ -98,7 +107,7 @@ function readSavedData() {
   } catch (error) {
     canSave = false;
     showStorageMessage(
-      "本地记录读取失败，暂时使用空清单。原记录未覆盖，本次记录可导出备份。",
+      "本地记录读取失败，暂时使用空清单。原记录未覆盖。" + getUnsavedHint(),
     );
   }
 }
@@ -106,7 +115,7 @@ function readSavedData() {
 // 保存成功返回 true；禁止保存或写入失败返回 false。
 function saveData() {
   if (!canSave) {
-    showStorageMessage("本次记录只保留在当前页面，请导出 JSON 备份。");
+    showStorageMessage("本地记录暂时无法保存。" + getUnsavedHint());
     return false;
   }
   try {
@@ -114,7 +123,7 @@ function saveData() {
     showStorageMessage("");
     return true;
   } catch (error) {
-    showStorageMessage("保存失败，请用导出 JSON 备份本次记录。");
+    showStorageMessage("保存失败。" + getUnsavedHint());
     return false;
   }
 }
@@ -129,6 +138,7 @@ function totalExpenses() {
 
 HZ.saveData = saveData;
 HZ.totalExpenses = totalExpenses;
+HZ.unsavedHint = getUnsavedHint;
 
 // 在页面显示数据前，先读取已保存的个人记录。
 readSavedData();
