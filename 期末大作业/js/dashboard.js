@@ -245,54 +245,61 @@ $(function () {
     }
   }
 
-  function showPersonalCharts() {
-    const state = HZ.state;
-    const amounts = [];
-    const amountNotes = [];
+  // 统计函数只计算数据，不操作页面或图表。
+  function calculateExpenseStatistics(expenses, categories) {
+    const totalsCents = [];
     for (
       let categoryIndex = 0;
-      categoryIndex < HZ.categories.length;
+      categoryIndex < categories.length;
       categoryIndex++
     ) {
-      const category = HZ.categories[categoryIndex];
+      const category = categories[categoryIndex];
       let totalCents = 0;
       for (
         let expenseIndex = 0;
-        expenseIndex < state.expenses.length;
+        expenseIndex < expenses.length;
         expenseIndex++
       ) {
-        const expenseRecord = state.expenses[expenseIndex];
+        const expenseRecord = expenses[expenseIndex];
         if (expenseRecord.category === category) {
           totalCents += expenseRecord.amountCents;
         }
       }
-      amounts.push(totalCents / 100);
-      amountNotes.push(category + " " + HZ.format(totalCents));
+      totalsCents.push(totalCents);
     }
+    return { totalsCents: totalsCents, count: expenses.length };
+  }
+
+  function calculateFavoriteStatistics(favorites) {
     let want = 0;
     let visited = 0;
-    for (let index = 0; index < state.favorites.length; index++) {
-      if (state.favorites[index].status === "want") {
+    for (let index = 0; index < favorites.length; index++) {
+      if (favorites[index].status === "want") {
         want++;
       } else {
         visited++;
       }
     }
+    return { want: want, visited: visited };
+  }
+
+  function showExpenseChart(statistics) {
+    const amounts = [];
+    const amountNotes = [];
+    for (let index = 0; index < HZ.categories.length; index++) {
+      const totalCents = statistics.totalsCents[index];
+      amounts.push(totalCents / 100);
+      amountNotes.push(HZ.categories[index] + " " + HZ.format(totalCents));
+    }
     expenseChart = getChart("expense-chart");
-    favoriteChart = getChart("favorite-chart");
     let expenseNote = "暂无消费记录，去「我的行程」记录费用。";
-    let favoriteNote = "暂无收藏记录，去景点探索添加收藏。";
-    if (state.expenses.length > 0) {
+    if (statistics.count > 0) {
       expenseNote = "来源：本人本地消费记录 · 元；" + amountNotes.join(" / ");
     }
-    if (state.favorites.length > 0) {
-      favoriteNote = `来源：本人本地收藏 · 想去 ${want} / 已打卡 ${visited}`;
-    }
     $("#expense-chart-note").text(expenseNote);
-    $("#favorite-chart-note").text(favoriteNote);
     if (expenseChart) {
       expenseChart.clear();
-      if (state.expenses.length) {
+      if (statistics.count > 0) {
         expenseChart.setOption({
           animation: false,
           textStyle: { color: colors.ink },
@@ -321,9 +328,21 @@ $(function () {
         });
       }
     }
+  }
+
+  function showFavoriteChart(statistics) {
+    const want = statistics.want;
+    const visited = statistics.visited;
+    const count = want + visited;
+    favoriteChart = getChart("favorite-chart");
+    let favoriteNote = "暂无收藏记录，去景点探索添加收藏。";
+    if (count > 0) {
+      favoriteNote = `来源：本人本地收藏 · 想去 ${want} / 已打卡 ${visited}`;
+    }
+    $("#favorite-chart-note").text(favoriteNote);
     if (favoriteChart) {
       favoriteChart.clear();
-      if (state.favorites.length) {
+      if (count > 0) {
         favoriteChart.setOption({
           animation: false,
           textStyle: { color: colors.ink },
@@ -351,6 +370,17 @@ $(function () {
         });
       }
     }
+  }
+
+  function showPersonalCharts() {
+    const state = HZ.state;
+    const expenseStatistics = calculateExpenseStatistics(
+      state.expenses,
+      HZ.categories,
+    );
+    const favoriteStatistics = calculateFavoriteStatistics(state.favorites);
+    showExpenseChart(expenseStatistics);
+    showFavoriteChart(favoriteStatistics);
   }
 
   $("#chart-month").on("change", function () {
