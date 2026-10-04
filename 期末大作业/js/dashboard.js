@@ -61,12 +61,14 @@ $(function () {
     }
     return true;
   }
+
   const colors = {
     ink: "#354333",
     accent: "#789d67",
     line: "#dce7d7",
     gold: "#bc9355",
   };
+
   function getChart(id) {
     if (typeof echarts === "undefined") {
       return null;
@@ -76,6 +78,7 @@ $(function () {
       echarts.init(document.getElementById(id))
     );
   }
+
   function options(type) {
     return {
       animation: false,
@@ -112,6 +115,7 @@ $(function () {
       ],
     };
   }
+
   function initFlow() {
     if (!flow) {
       return;
@@ -166,6 +170,7 @@ $(function () {
     barChart.on("click", chooseChartMonth);
     lineChart.on("click", chooseChartMonth);
   }
+
   function chooseChartMonth(parameters) {
     if (!flow.months.includes(parameters.name)) {
       return;
@@ -174,6 +179,7 @@ $(function () {
     HZ.saveData();
     updateMonth();
   }
+
   function monthData() {
     const data = [];
     for (let index = 0; index < flow.months.length; index++) {
@@ -188,6 +194,7 @@ $(function () {
     }
     return data;
   }
+
   function updateMonth() {
     if (!flow) {
       return;
@@ -206,6 +213,7 @@ $(function () {
       lineChart.setOption({ series: [{ data: data }] });
     }
   }
+
   function clearFlow() {
     flow = null;
     if (barChart) {
@@ -218,6 +226,7 @@ $(function () {
     $("#chart-month").empty().prop("disabled", true);
     $("#month-note,#chart-source").empty();
   }
+
   async function loadFlow() {
     clearFlow();
     $("#dashboard-status").text("正在加载客流数据…");
@@ -235,6 +244,7 @@ $(function () {
       $("#dashboard-status").text(error.message);
     }
   }
+
   function showPersonalCharts() {
     const state = HZ.state;
     const amounts = [];
@@ -342,11 +352,13 @@ $(function () {
       }
     }
   }
+
   $("#chart-month").on("change", function () {
     HZ.state.selectedMonth = this.value;
     HZ.saveData();
     updateMonth();
   });
+
   window.addEventListener("resize", function () {
     if (barChart) {
       barChart.resize();
@@ -361,6 +373,7 @@ $(function () {
       favoriteChart.resize();
     }
   });
+
   loadFlow();
   showPersonalCharts();
 });

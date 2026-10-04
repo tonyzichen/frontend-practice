@@ -28,6 +28,7 @@ $(function () {
     );
     $("#reset-scene,#pause-scene").prop("disabled", true);
   }
+
   function showLandmarkButtons() {
     $("[data-landmark]").each(function () {
       $(this).attr(
@@ -36,6 +37,7 @@ $(function () {
       );
     });
   }
+
   function focusLandmark(id) {
     if (!controls || !landmarkIds.includes(id)) {
       return;
@@ -44,6 +46,7 @@ $(function () {
     controls.target.set(point.x, point.y, point.z);
     camera.position.set(point.x + 7, point.y + 5, point.z + 8);
   }
+
   function selectLandmark(id) {
     if (!landmarkIds.includes(id)) {
       return;
@@ -53,6 +56,7 @@ $(function () {
     showLandmarkButtons();
     focusLandmark(id);
   }
+
   function createLake() {
     // 岸地与湖面
     const ground = new THREE.Mesh(
@@ -75,6 +79,7 @@ $(function () {
     lake.userData.placeId = "westlake";
     scene.add(lake);
   }
+
   function createPagoda() {
     // 雷峰塔：石座＋三层塔身＋塔刹
     pagoda = new THREE.Group();
@@ -128,8 +133,10 @@ $(function () {
     pagoda.traverse(function (object) {
       object.userData.placeId = "leifengta";
     });
+
     scene.add(pagoda);
   }
+
   function createBridge() {
     // 断桥
     bridge = new THREE.Mesh(
@@ -141,6 +148,7 @@ $(function () {
     bridge.userData.placeId = "duanqiao";
     scene.add(bridge);
   }
+
   function createMoon() {
     // 月亮
     const moon = new THREE.Mesh(
@@ -154,6 +162,7 @@ $(function () {
     moon.position.set(-8, 7.5, -9);
     scene.add(moon);
   }
+
   function createBoat() {
     // 一叶小船
     boat = new THREE.Group();
@@ -172,6 +181,7 @@ $(function () {
     boat.position.set(0, 0.05, 1.5);
     scene.add(boat);
   }
+
   function createHills() {
     const hills = [
       { x: -9, z: -8, radius: 3.4, height: 5.2 },
@@ -189,6 +199,7 @@ $(function () {
       scene.add(hill);
     }
   }
+
   function animate() {
     if (stopped) {
       return;
@@ -211,11 +222,14 @@ $(function () {
       camera.updateProjectionMatrix();
       renderer.setSize(container.clientWidth, container.clientHeight);
     });
+
     const raycaster = new THREE.Raycaster();
     let pointerStart = null;
+
     renderer.domElement.addEventListener("pointerdown", function (event) {
       pointerStart = { x: event.clientX, y: event.clientY };
     });
+
     renderer.domElement.addEventListener("pointerup", function (event) {
       if (!pointerStart) {
         return;
@@ -242,16 +256,19 @@ $(function () {
         selectLandmark(hits[0].object.userData.placeId);
       }
     });
+
     renderer.domElement.addEventListener("webglcontextlost", function (event) {
       event.preventDefault();
       stopped = true;
       cancelAnimationFrame(animationFrame);
       showFallback("三维显示中断，请刷新页面。");
     });
+
     $("#reset-scene").on("click", function () {
       camera.position.set(9, 6, 12);
       controls.target.set(0, 0.6, 0);
     });
+
     $("#pause-scene").on("click", function () {
       // 清掉切换前的时间差，避免后台暂停时没有动画帧而积累时间。
       clock.getDelta();
@@ -308,9 +325,11 @@ $(function () {
     $("#scene-status").text("三维场景加载完成，可以旋转、缩放或选择地标。");
     animate();
   }
+
   $("[data-landmark]").on("click", function () {
     selectLandmark(this.dataset.landmark);
   });
+
   const requestedPlace = new URLSearchParams(location.search).get("place");
   if (landmarkIds.includes(requestedPlace)) {
     selectLandmark(requestedPlace);

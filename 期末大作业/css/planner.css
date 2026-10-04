@@ -85,6 +85,7 @@
     grid-template-columns: 1fr;
   }
 }
+
 @media print {
   #favorites-list .actions {
     display: none;

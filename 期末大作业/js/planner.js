@@ -1,5 +1,6 @@
 $(function () {
   let placeList = [];
+
   function showPlaceOptions() {
     let html = '<option value="">公共支出</option>';
     for (let index = 0; index < placeList.length; index++) {
@@ -292,11 +293,14 @@ $(function () {
     }, 1000);
     HZ.notify("已发起 JSON 下载，请在浏览器下载目录核对文件。");
   });
+
   $("#print-button").on("click", function () {
     window.print();
   });
+
   showPlanner();
   $("#planner-status").text("正在加载景点目录…");
+
   async function loadPlannerPlaces() {
     try {
       placeList = await HZ.loadPlaces();
@@ -310,5 +314,6 @@ $(function () {
     showPlaceOptions();
     showPlanner();
   }
+
   loadPlannerPlaces();
 });

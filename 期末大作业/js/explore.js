@@ -1,6 +1,7 @@
 $(function () {
   let placeList = [];
   let selectedType = "全部";
+
   function showPlaces() {
     const keyword = $("#place-search").val().trim().toLowerCase();
     const favoriteMode = $("#favorite-filter").val();
@@ -39,13 +40,16 @@ $(function () {
     $("#result-count").text(`找到 ${count} / ${placeList.length} 处景点`);
     $("#empty-state").prop("hidden", count !== 0);
   }
+
   function selectType(type) {
     selectedType = type;
     $("[data-type]").each(function () {
       $(this).attr("aria-pressed", String(this.dataset.type === selectedType));
     });
+
     showPlaces();
   }
+
   async function loadFoods() {
     $("#food-list").empty();
     $("#food-status").text("正在加载美食…");
@@ -77,6 +81,7 @@ $(function () {
       $("#food-status").text(error.message);
     }
   }
+
   async function loadPlaceList() {
     try {
       placeList = await HZ.loadPlaces();
@@ -85,22 +90,28 @@ $(function () {
       $("#result-count").text(error.message);
     }
   }
+
   $("#place-search").on("input", showPlaces);
   $("#favorite-filter").on("change", showPlaces);
+
   $("[data-type]").on("click", function () {
     selectType(this.dataset.type);
   });
+
   $("#clear-filter").on("click", function () {
     $("#place-search").val("");
     $("#favorite-filter").val("all");
     selectType("全部");
   });
+
   $(document).on("click", "[data-action]", function () {
     if (HZ.changeCard(this.dataset.action, this.dataset.id)) {
       showPlaces();
     }
   });
+
   $('[data-retry="foods"]').on("click", loadFoods);
+
   $("#result-count").text("正在加载景点…");
   loadPlaceList();
   loadFoods();

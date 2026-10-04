@@ -1,5 +1,6 @@
 // 景点资料、卡片以及收藏和行程操作。
 let places = [];
+
 function validatePlaces(data) {
   if (!data || !Array.isArray(data.places)) {
     throw new Error("景点数据缺少 places 数组。");
