@@ -1,0 +1,166 @@
+/* 地标选择与画布控制分别放在侧栏和预览区域。 */
+.scene-layout {
+  margin-top: 8px;
+}
+.landmark-panel {
+  padding: 20px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.landmark-panel h2,
+.viewer-title h2 {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+.landmark-panel .muted {
+  margin-bottom: 18px;
+}
+.landmark-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.landmark-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 12px;
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #f8fbf6;
+  color: var(--ink);
+}
+.landmark-button strong {
+  display: block;
+  font-size: 15px;
+}
+.landmark-button small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.landmark-number {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #edf4e7;
+  color: #78956a;
+  font-size: 13px;
+}
+.landmark-button:hover {
+  background: #edf5e9;
+}
+.landmark-button[aria-pressed="true"] {
+  border-color: #a5bf95;
+  background: #e7f1df;
+}
+.landmark-button[aria-pressed="true"] strong {
+  color: #45643d;
+}
+.landmark-button[aria-pressed="true"] .landmark-number {
+  color: white;
+  background: #648653;
+}
+.scene-viewer {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: white;
+}
+.scene-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 18px 20px;
+}
+.viewer-title p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+.viewer-tools {
+  display: flex;
+  gap: 14px;
+}
+.viewer-control {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 5px;
+}
+.viewer-control > span {
+  font-size: 11px;
+  color: var(--muted);
+}
+.viewer-control .quiet {
+  font-size: 13px;
+  padding: 5px 10px;
+}
+#westlake-scene {
+  height: 460px;
+  background: #14333f;
+  overflow: hidden;
+}
+#westlake-scene canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+#scene-status {
+  padding: 12px 20px;
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+.scene-fallback {
+  padding: 40px;
+  color: white;
+  text-align: center;
+}
+@media (max-width: 991px) {
+  .landmark-list {
+    flex-direction: row;
+  }
+  .landmark-button {
+    flex: 1;
+  }
+}
+@media (max-width: 600px) {
+  .landmark-panel {
+    padding: 16px;
+  }
+  .landmark-button {
+    padding: 10px 6px;
+    justify-content: center;
+    gap: 0;
+    text-align: center;
+  }
+  .landmark-number {
+    display: none;
+  }
+  .landmark-button small {
+    font-size: 11px;
+  }
+  .scene-toolbar {
+    padding: 16px;
+  }
+  .viewer-tools {
+    gap: 12px;
+  }
+  #westlake-scene {
+    height: 320px;
+  }
+  #scene-status {
+    padding: 12px 16px;
+  }
+}
