@@ -2,13 +2,11 @@
 
 :root {
   --bg: #f6faf5;
-  --paper: #fff;
   --tint: #edf5e9;
   --ink: #354333;
   --muted: #687564;
   --accent: #527b49;
   --line: #dce7d7;
-  --gold: #bc9355;
   --error: #c0392b;
 }
 
