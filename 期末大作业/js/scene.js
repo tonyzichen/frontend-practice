@@ -16,6 +16,7 @@ $(function () {
   let bridge = null;
   let boat = null;
   let clock = null;
+  let animationTime = 0;
   let paused = false;
   let stopped = false;
   let animationFrame = 0;
@@ -192,10 +193,12 @@ $(function () {
     if (stopped) {
       return;
     }
-    const elapsedTime = clock.getElapsedTime();
+    const delta = clock.getDelta();
     if (!paused) {
-      boat.position.x = Math.sin(elapsedTime * 0.35) * 4.2;
-      boat.position.y = 0.05 + Math.sin(elapsedTime * 1.2) * 0.03;
+      // 只累计播放时间，暂停期间的小船位置保持不变。
+      animationTime += delta;
+      boat.position.x = Math.sin(animationTime * 0.35) * 4.2;
+      boat.position.y = 0.05 + Math.sin(animationTime * 1.2) * 0.03;
     }
     controls.update();
     renderer.render(scene, camera);
@@ -250,6 +253,8 @@ $(function () {
       controls.target.set(0, 0.6, 0);
     });
     $("#pause-scene").on("click", function () {
+      // 清掉切换前的时间差，避免后台暂停时没有动画帧而积累时间。
+      clock.getDelta();
       paused = !paused;
       let buttonText = "暂停动画";
       if (paused) {
