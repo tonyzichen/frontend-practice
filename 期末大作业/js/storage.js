@@ -103,17 +103,19 @@ function readSavedData() {
   }
 }
 
-// 操作完成后，页面直接调用保存函数和自己的显示函数。
+// 保存成功返回 true；禁止保存或写入失败返回 false。
 function saveData() {
   if (!canSave) {
     showStorageMessage("本次记录只保留在当前页面，请导出 JSON 备份。");
-    return;
+    return false;
   }
   try {
     localStorage.setItem(storageKey, JSON.stringify(HZ.state));
     showStorageMessage("");
+    return true;
   } catch (error) {
     showStorageMessage("保存失败，请用导出 JSON 备份本次记录。");
+    return false;
   }
 }
 
