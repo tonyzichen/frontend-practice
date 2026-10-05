@@ -41,11 +41,10 @@ function confirmAction(title, message, confirmText) {
   confirmationOpen = true;
   return new Promise(function (resolve) {
     const trigger = document.activeElement;
-    const background = Array.from(document.body.children);
-    const previousOverflow = document.body.style.overflow;
-    const modal = document.createElement("div");
-    modal.className = "confirm-modal";
-    modal.innerHTML = `
+    const $body = $("body");
+    const $background = $body.children();
+    const previousOverflow = $body.prop("style").overflow;
+    const $modal = $("<div>", { class: "confirm-modal" }).html(`
       <section class="confirm-panel" role="dialog" aria-modal="true"
         aria-labelledby="confirm-title" aria-describedby="confirm-description">
         <h2 id="confirm-title"></h2>
@@ -54,26 +53,25 @@ function confirmAction(title, message, confirmText) {
           <button type="button" class="button" data-confirm="cancel">取消</button>
           <button type="button" class="button confirm-danger" data-confirm="accept"></button>
         </div>
-      </section>`;
-    modal.querySelector("#confirm-title").textContent = title;
-    modal.querySelector("#confirm-description").textContent = message;
-    const cancel = modal.querySelector('[data-confirm="cancel"]');
-    const accept = modal.querySelector('[data-confirm="accept"]');
-    accept.textContent = confirmText;
-    const previousInert = background.map(function (element) {
-      const value = element.inert;
-      element.inert = true;
-      return value;
+      </section>`);
+    $modal.find("#confirm-title").text(title);
+    $modal.find("#confirm-description").text(message);
+    const $cancel = $modal.find('[data-confirm="cancel"]');
+    const $accept = $modal.find('[data-confirm="accept"]');
+    $accept.text(confirmText);
+    const previousInert = $background.toArray().map(function (element) {
+      return $(element).prop("inert");
     });
-    document.body.appendChild(modal);
-    document.body.style.overflow = "hidden";
+    $background.prop("inert", true);
+    $modal.appendTo($body);
+    $body.css("overflow", "hidden");
 
     function close(confirmed) {
-      modal.remove();
-      background.forEach(function (element, index) {
-        element.inert = previousInert[index];
+      $modal.remove();
+      $background.each(function (index) {
+        $(this).prop("inert", previousInert[index]);
       });
-      document.body.style.overflow = previousOverflow;
+      $body.css("overflow", previousOverflow);
       confirmationOpen = false;
       if (trigger && trigger.isConnected) {
         trigger.focus({ preventScroll: true });
@@ -81,23 +79,23 @@ function confirmAction(title, message, confirmText) {
       resolve(confirmed);
     }
 
-    cancel.addEventListener("click", function () { close(false); });
-    accept.addEventListener("click", function () { close(true); });
-    modal.addEventListener("click", function (event) {
-      if (event.target === modal) close(false);
+    $cancel.on("click", function () { close(false); });
+    $accept.on("click", function () { close(true); });
+    $modal.on("click", function (event) {
+      if (event.target === $modal[0]) close(false);
     });
-    modal.addEventListener("keydown", function (event) {
+    $modal.on("keydown", function (event) {
       if (event.key === "Escape") {
         event.preventDefault();
         close(false);
       } else if (event.key === "Tab") {
         // 焦点留在弹窗中，Shift + Tab 也不会进入背景页面。
         event.preventDefault();
-        if (document.activeElement === cancel) accept.focus();
-        else cancel.focus();
+        if (document.activeElement === $cancel[0]) $accept.trigger("focus");
+        else $cancel.trigger("focus");
       }
     });
-    cancel.focus();
+    $cancel.trigger("focus");
   });
 }
 
