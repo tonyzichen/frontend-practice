@@ -139,11 +139,8 @@
   touch-action: none;
 }
 
-#scene-status {
-  padding: 12px 20px;
-  margin: 0;
-  font-size: 12px;
-  color: var(--muted);
+.scene-viewer .notice {
+  margin: 12px 20px;
 }
 
 .scene-fallback {
@@ -194,7 +191,7 @@
     height: 320px;
   }
 
-  #scene-status {
-    padding: 12px 16px;
+  .scene-viewer .notice {
+    margin: 12px 16px;
   }
 }

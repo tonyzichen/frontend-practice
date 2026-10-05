@@ -11,8 +11,24 @@ function validCents(value) {
   return Number.isSafeInteger(value) && value >= 0 && value <= 100000000;
 }
 
-function notify(message) {
-  $("#action-status").text(message);
+// 所有页面共用同一种提示组件，文字和颜色共同区分状态。
+function showMessage(selector, message, type = "info") {
+  const labels = { info: "提示", success: "成功", warning: "警告", error: "错误" };
+  if (!["info", "success", "warning", "error"].includes(type)) {
+    type = "info";
+  }
+  $(selector)
+    .addClass("notice")
+    .attr("data-tone", type)
+    .attr("role", type === "error" ? "alert" : "status")
+    .attr("aria-live", type === "error" ? "assertive" : "polite")
+    .attr("aria-atomic", "true")
+    .text(message ? labels[type] + "：" + message : "")
+    .prop("hidden", !message);
+}
+
+function notify(message, type = "success") {
+  showMessage("#action-status", message, type);
 }
 
 // 拼接 HTML 时，防止文字中的符号被解析为标签。
@@ -82,6 +98,7 @@ async function loadJson(url) {
 HZ.validMonth = validMonth;
 HZ.validCents = validCents;
 HZ.notify = notify;
+HZ.showMessage = showMessage;
 HZ.escape = escapeHtml;
 HZ.money = parseMoney;
 HZ.format = formatMoney;

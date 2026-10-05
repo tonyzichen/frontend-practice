@@ -77,10 +77,8 @@ function getUnsavedHint() {
   return message;
 }
 
-function showStorageMessage(message) {
-  $("#storage-status")
-    .text(message)
-    .prop("hidden", message === "");
+function showStorageMessage(message, type = "warning") {
+  HZ.showMessage("#storage-status", message, type);
 }
 
 function readSavedData() {
@@ -123,7 +121,7 @@ function saveData() {
     showStorageMessage("");
     return true;
   } catch (error) {
-    showStorageMessage("保存失败。" + getUnsavedHint());
+    showStorageMessage("保存失败。" + getUnsavedHint(), "error");
     return false;
   }
 }

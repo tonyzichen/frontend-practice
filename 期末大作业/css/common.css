@@ -165,17 +165,39 @@ a {
   top: 8px;
 }
 
-#action-status:empty {
+#action-status:empty,
+.notice:empty {
   display: none;
 }
 
-#action-status,
 .notice {
   margin: 12px 0;
-  padding: 10px;
+  padding: 10px 14px;
+  background: #eef5fb;
+  color: #36536b;
+  border: 1px solid #c8dbea;
+  border-left-width: 4px;
+  border-radius: 7px;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.notice[data-tone="success"] {
+  background: #edf5e9;
+  color: #3f6037;
+  border-color: #b7d0aa;
+}
+
+.notice[data-tone="warning"] {
   background: #fff5d6;
   color: #72521c;
-  border: 1px solid #e2d2a1;
+  border-color: #e2d2a1;
+}
+
+.notice[data-tone="error"] {
+  background: #fff0ed;
+  color: #a33024;
+  border-color: #e4b2ab;
 }
 
 .hero-text,
@@ -213,6 +235,19 @@ a {
   background: var(--accent);
   color: white;
   border-color: var(--accent);
+}
+
+.button-small {
+  padding: 4px 8px;
+}
+
+.danger-button {
+  color: var(--error);
+  border-color: #e4b2ab;
+}
+
+.danger-button:focus-visible {
+  outline-color: var(--error);
 }
 
 .section {
@@ -324,16 +359,20 @@ a {
   transition: background-color 0.15s;
 }
 
-.button:hover,
-.chip:hover,
-.quiet:hover {
+.button:hover:not(:disabled),
+.chip:hover:not(:disabled),
+.quiet:hover:not(:disabled) {
   background: #eef5e9;
   text-decoration: none;
 }
 
-.primary:hover,
-.chip[aria-pressed="true"]:hover {
+.primary:hover:not(:disabled),
+.chip[aria-pressed="true"]:hover:not(:disabled) {
   background: #456d3d;
+}
+
+.danger-button:hover:not(:disabled) {
+  background: #fff0ed;
 }
 
 #site-nav a:hover {
@@ -430,6 +469,7 @@ a {
   .skip-link,
   button,
   form,
+  .notice,
   #action-status,
   #storage-status {
     display: none !important;

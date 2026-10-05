@@ -50,9 +50,9 @@ $(function () {
       html += `<li><div>
         <strong>${index + 1}. ${HZ.escape(placeName)}</strong><span class="muted">${HZ.escape(placeArea)}</span>
         </div><div class="actions">
-        <button data-plan="up" data-id="${escapedId}" ${upDisabled}>上移</button>
-        <button data-plan="down" data-id="${escapedId}" ${downDisabled}>下移</button>
-        <button data-plan="remove" data-id="${escapedId}">移除</button></div></li>`;
+        <button class="button secondary button-small" data-plan="up" data-id="${escapedId}" ${upDisabled}>上移</button>
+        <button class="button secondary button-small" data-plan="down" data-id="${escapedId}" ${downDisabled}>下移</button>
+        <button class="button danger-button button-small" data-plan="remove" data-id="${escapedId}">移除</button></div></li>`;
     }
     if (itinerary.length === 0) {
       html = '<li class="empty">还没有行程，先在景点探索中加入一站。</li>';
@@ -88,7 +88,7 @@ $(function () {
       }
       html += `<li><div><strong>${HZ.escape(expense.label)} · ¥ ${HZ.format(expense.amountCents)}</strong>
         <span class="muted">${HZ.escape(expense.category)} / ${HZ.escape(placeName)}</span></div>
-        <button data-delete-expense="${HZ.escape(expense.id)}">删除</button></li>`;
+        <button class="button danger-button button-small" data-delete-expense="${HZ.escape(expense.id)}">删除</button></li>`;
     }
     if (HZ.state.expenses.length === 0) {
       html = '<li class="empty">没有消费记录，总支出为 0 元。</li>';
@@ -152,13 +152,15 @@ $(function () {
       HZ.state.budgetCents = HZ.money($("#budget-input").val());
       const saved = HZ.saveData();
       showBudget();
-      $("#budget-message").text(
+      HZ.showMessage(
+        "#budget-message",
         saved
           ? "预算已更新并保存。"
           : "预算尚未保存。" + HZ.unsavedHint(),
+        saved ? "success" : "warning",
       );
     } catch (error) {
-      $("#budget-message").text(error.message);
+      HZ.showMessage("#budget-message", error.message, "error");
     }
   });
 
@@ -192,13 +194,15 @@ $(function () {
       showBudget();
       showExpenses();
       $("#expense-form")[0].reset();
-      $("#budget-message").text(
+      HZ.showMessage(
+        "#budget-message",
         saved
           ? "费用已添加并保存（允许 0 元）。"
           : "费用尚未保存。" + HZ.unsavedHint(),
+        saved ? "success" : "warning",
       );
     } catch (error) {
-      $("#budget-message").text(error.message);
+      HZ.showMessage("#budget-message", error.message, "error");
     }
   });
 
@@ -267,11 +271,13 @@ $(function () {
       const saved = HZ.saveData();
       showBudget();
       showExpenses();
-      $("#budget-message").text(
+      HZ.showMessage(
+        "#budget-message",
         `${saved ? "已载入并保存" : "仅在当前页面载入，尚未保存"} ${costList.length} 条课堂样例，合计 ${HZ.format(totalCostCents)} 元；重复点击不会重复添加。这些金额不是实时价格。${saved ? "" : HZ.unsavedHint()}`,
+        saved ? "success" : "warning",
       );
     } catch (error) {
-      $("#budget-message").text(error.message);
+      HZ.showMessage("#budget-message", error.message, "error");
     }
   });
 
@@ -299,7 +305,7 @@ $(function () {
     setTimeout(function () {
       URL.revokeObjectURL(url);
     }, 1000);
-    HZ.notify("已发起 JSON 下载，请在浏览器下载目录核对文件。");
+    HZ.notify("已发起 JSON 下载，请在浏览器下载目录核对文件。", "info");
   });
 
   $("#print-button").on("click", function () {
@@ -307,17 +313,17 @@ $(function () {
   });
 
   showPlanner();
-  $("#planner-status").text("正在加载景点目录…");
+  HZ.showMessage("#planner-status", "正在加载景点目录…");
 
   async function loadPlannerPlaces() {
     try {
       placeList = await HZ.loadPlaces();
-      $("#planner-status").text("");
+      HZ.showMessage("#planner-status", "");
       if (placeList.length === 0) {
-        $("#planner-status").text("景点目录为空，已有记录仍保留。");
+        HZ.showMessage("#planner-status", "景点目录为空，已有记录仍保留。");
       }
     } catch (error) {
-      $("#planner-status").text(error.message);
+      HZ.showMessage("#planner-status", error.message, "error");
     }
     showPlaceOptions();
     showPlanner();

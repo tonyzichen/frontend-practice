@@ -37,7 +37,7 @@ $(function () {
       }
     }
     $("#place-list").html(html);
-    $("#result-count").text(`找到 ${count} / ${placeList.length} 处景点`);
+    HZ.showMessage("#result-count", `找到 ${count} / ${placeList.length} 处景点`);
     $("#empty-state").prop("hidden", count !== 0);
   }
 
@@ -52,7 +52,7 @@ $(function () {
 
   async function loadFoods() {
     $("#food-list").empty();
-    $("#food-status").text("正在加载美食…");
+    HZ.showMessage("#food-status", "正在加载美食…");
     try {
       const data = await HZ.loadJson("data/foods.json");
       if (!data || !Array.isArray(data.foods)) {
@@ -73,12 +73,12 @@ $(function () {
         <a href="planner.html">记录餐饮费用 ↗</a></article></div>`;
       }
       $("#food-list").html(html);
-      $("#food-status").text("");
+      HZ.showMessage("#food-status", "");
       if (data.foods.length === 0) {
-        $("#food-status").text("暂无美食资料。");
+        HZ.showMessage("#food-status", "暂无美食资料。");
       }
     } catch (error) {
-      $("#food-status").text(error.message);
+      HZ.showMessage("#food-status", error.message, "error");
     }
   }
 
@@ -87,7 +87,7 @@ $(function () {
       placeList = await HZ.loadPlaces();
       showPlaces();
     } catch (error) {
-      $("#result-count").text(error.message);
+      HZ.showMessage("#result-count", error.message, "error");
     }
   }
 
@@ -112,7 +112,7 @@ $(function () {
 
   $('[data-retry="foods"]').on("click", loadFoods);
 
-  $("#result-count").text("正在加载景点…");
+  HZ.showMessage("#result-count", "正在加载景点…");
   loadPlaceList();
   loadFoods();
 });

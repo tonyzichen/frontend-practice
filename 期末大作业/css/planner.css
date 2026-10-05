@@ -45,14 +45,6 @@
   display: block;
 }
 
-.record-list button {
-  padding: 4px 8px;
-  border: 1px solid var(--line);
-  border-radius: 7px;
-  background: white;
-  color: var(--accent);
-}
-
 .summary {
   border-radius: 8px;
   display: flex;

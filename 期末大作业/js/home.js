@@ -29,18 +29,18 @@ $(function () {
   });
 
   showSummary();
-  $("#featured-status").text("正在加载景点…");
+  HZ.showMessage("#featured-status", "正在加载景点…");
 
   async function loadFeatured() {
     try {
       placeList = await HZ.loadPlaces();
       showFeatured();
-      $("#featured-status").text("");
+      HZ.showMessage("#featured-status", "");
       if (placeList.length === 0) {
-        $("#featured-status").text("暂无景点资料。");
+        HZ.showMessage("#featured-status", "暂无景点资料。");
       }
     } catch (error) {
-      $("#featured-status").text(error.message + " 请检查运行说明后刷新页面。");
+      HZ.showMessage("#featured-status", error.message + " 请检查运行说明后刷新页面。", "error");
     }
   }
 

@@ -22,7 +22,7 @@ $(function () {
   let animationFrame = 0;
 
   function showFallback(message) {
-    $("#scene-status").text(message + " 地标文字与其他功能仍可使用。");
+    HZ.showMessage("#scene-status", message + " 地标文字与其他功能仍可使用。", "error");
     $("#westlake-scene").html(
       '<div class="scene-fallback">西湖 · 雷峰塔 · 断桥<br><small>湖畔、塔影与古桥的静态地标示意</small></div>',
     );
@@ -322,7 +322,7 @@ $(function () {
     clock = new THREE.Clock();
     bindSceneEvents();
     focusLandmark(HZ.state.selectedPlaceId);
-    $("#scene-status").text("三维场景加载完成，可以旋转、缩放或选择地标。");
+    HZ.showMessage("#scene-status", "三维场景加载完成，可以旋转、缩放或选择地标。", "success");
     animate();
   }
 

@@ -141,7 +141,7 @@ function makePlaceCard(place) {
 function changeCard(action, id) {
   const place = HZ.place(id);
   if (!place) {
-    HZ.notify("景点资料不可用，请刷新页面。");
+    HZ.notify("景点资料不可用，请刷新页面。", "error");
     return false;
   }
   const favorite = HZ.favorite(id);
@@ -173,7 +173,7 @@ function changeCard(action, id) {
   if (!saved) {
     message = place.name + "：更改尚未保存。" + HZ.unsavedHint();
   }
-  HZ.notify(message);
+  HZ.notify(message, saved ? "success" : "warning");
   // 操作已应用到当前页面，即使保存失败也要刷新卡片。
   return true;
 }

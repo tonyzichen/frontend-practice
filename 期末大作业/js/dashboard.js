@@ -173,8 +173,10 @@ $(function () {
     barChart = getChart("spot-chart");
     lineChart = getChart("trend-chart");
     if (!barChart || !lineChart) {
-      $("#dashboard-status").text(
+      HZ.showMessage(
+        "#dashboard-status",
         "图表库不可用，请检查 libs/echarts.min.js 后刷新页面。",
+        "error",
       );
       return;
     }
@@ -245,21 +247,21 @@ $(function () {
 
   async function loadFlow() {
     clearFlow();
-    $("#dashboard-status").text("正在加载客流数据…");
+    HZ.showMessage("#dashboard-status", "正在加载客流数据…");
     $("#flow-chart-note").text("正在加载客流文字数据…");
     try {
       const data = await HZ.loadJson("data/visitors.json");
       if (!validateFlow(data)) {
-        $("#dashboard-status").text("暂无客流数据，图表与统计已清空。");
+        HZ.showMessage("#dashboard-status", "暂无客流数据，图表与统计已清空。");
         $("#flow-chart-note").text("暂无客流数据。");
         return;
       }
       flow = data;
-      $("#dashboard-status").text("客流数据加载成功 · 12 个月");
+      HZ.showMessage("#dashboard-status", "客流数据加载成功 · 12 个月", "success");
       initFlow();
     } catch (error) {
       clearFlow();
-      $("#dashboard-status").text(error.message);
+      HZ.showMessage("#dashboard-status", error.message, "error");
       $("#flow-chart-note").text("客流数据加载失败，暂时无法提供文字数据。");
     }
   }
