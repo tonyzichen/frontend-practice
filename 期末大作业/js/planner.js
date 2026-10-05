@@ -113,7 +113,7 @@ $(function () {
     if (action === "remove") {
       const place = HZ.place(this.dataset.id);
       const placeName = place ? place.name : "资料不可用的景点";
-      if (!await HZ.confirm("移出行程", `确定将「${placeName}」移出行程吗？\n移除后可在景点探索中重新加入。`, "确认移除")) {
+      if (!await HZ.confirm("移除行程", `确定将「${placeName}」移除行程吗？\n移除后可在景点探索中重新加入。`, "确认移除")) {
         return;
       }
       HZ.state.itinerary.splice(index, 1);
