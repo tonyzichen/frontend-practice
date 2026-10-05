@@ -2,27 +2,27 @@
   "foods": [
     {
       "name": "西湖醋鱼",
-      "description": "糖醋芡汁，酸甜风味。"
+      "description": "鱼肉鲜嫩，糖醋芡汁酸甜适口，醋香鲜明。"
     },
     {
       "name": "东坡肉",
-      "description": "慢火细炖，酥烂红亮。"
+      "description": "色泽红亮，肉质酥软，酱香浓郁，咸中带甜。"
     },
     {
       "name": "龙井虾仁",
-      "description": "茶香入馔，清鲜淡雅。"
+      "description": "虾仁洁白嫩滑，龙井茶香清雅，口味清鲜。"
     },
     {
       "name": "片儿川",
-      "description": "雪菜笋片，一碗杭州日常。"
+      "description": "雪菜咸鲜、笋片爽脆、肉片鲜嫩，面条配上鲜香汤汁。"
     },
     {
       "name": "葱包桧",
-      "description": "铁板烤制，街头小食。"
+      "description": "春饼包裹油条与葱段，压烤后外皮酥脆，葱香浓郁。"
     },
     {
       "name": "定胜糕",
-      "description": "粉色印花，传统糕点。"
+      "description": "糕体淡粉、口感松软，米香与豆沙甜香相融，甜而不腻。"
     }
   ]
 }
