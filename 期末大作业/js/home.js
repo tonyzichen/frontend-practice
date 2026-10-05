@@ -21,8 +21,8 @@ $(function () {
   }
 
   // 动态生成的按钮用事件委托处理，操作后直接刷新首页。
-  $(document).on("click", "[data-action]", function () {
-    if (HZ.changeCard(this.dataset.action, this.dataset.id)) {
+  $(document).on("click", "[data-action]", async function () {
+    if (await HZ.changeCard(this.dataset.action, this.dataset.id)) {
       showSummary();
       showFeatured();
     }

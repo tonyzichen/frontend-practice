@@ -380,6 +380,62 @@ a {
   text-decoration: none;
 }
 
+/* 删除确认弹窗，与页面共用字体、圆角和按钮样式。 */
+.confirm-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(29, 41, 27, 0.45);
+}
+
+.confirm-panel {
+  width: 100%;
+  max-width: 440px;
+  max-height: 100%;
+  overflow: auto;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 12px 40px rgba(29, 41, 27, 0.2);
+}
+
+.confirm-panel h2 {
+  font-size: 20px;
+}
+
+.confirm-panel p {
+  color: var(--muted);
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.confirm-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.confirm-danger {
+  background: var(--error);
+  border-color: var(--error);
+  color: white;
+}
+
+.confirm-danger:hover:not(:disabled) {
+  background: #a33024;
+}
+
+.confirm-danger:focus-visible {
+  outline-color: var(--error);
+}
+
 /* 布局交给 Bootstrap 的 container、row 和 col，下面只补外观。 */
 .brand-icon {
   flex-shrink: 0;
@@ -465,6 +521,7 @@ a {
   }
 
   .site-header,
+  .confirm-modal,
   .site-footer,
   .skip-link,
   button,

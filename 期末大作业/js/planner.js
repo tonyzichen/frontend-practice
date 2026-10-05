@@ -104,13 +104,18 @@ $(function () {
     showExpenses();
   }
 
-  $(document).on("click", "[data-plan]", function () {
+  $(document).on("click", "[data-plan]", async function () {
     const action = this.dataset.plan;
     const index = HZ.state.itinerary.indexOf(this.dataset.id);
     if (index < 0) {
       return;
     }
     if (action === "remove") {
+      const place = HZ.place(this.dataset.id);
+      const placeName = place ? place.name : "资料不可用的景点";
+      if (!await HZ.confirm("移出行程", `确定将「${placeName}」移出行程吗？\n移除后可在景点探索中重新加入。`, "确认移除")) {
+        return;
+      }
       HZ.state.itinerary.splice(index, 1);
     } else {
       let nextIndex = index + 1;
@@ -129,8 +134,8 @@ $(function () {
     showItinerary();
   });
 
-  $(document).on("click", "[data-action]", function () {
-    if (HZ.changeCard(this.dataset.action, this.dataset.id)) {
+  $(document).on("click", "[data-action]", async function () {
+    if (await HZ.changeCard(this.dataset.action, this.dataset.id)) {
       showPlanner();
     }
   });
@@ -206,10 +211,14 @@ $(function () {
     }
   });
 
-  $(document).on("click", "[data-delete-expense]", function () {
+  $(document).on("click", "[data-delete-expense]", async function () {
     const expenseId = this.dataset.deleteExpense;
     for (let index = 0; index < HZ.state.expenses.length; index++) {
       if (HZ.state.expenses[index].id === expenseId) {
+        const expense = HZ.state.expenses[index];
+        if (!await HZ.confirm("删除费用记录", `确定删除「${expense.label}」（¥ ${HZ.format(expense.amountCents)}）这条费用记录吗？\n删除后无法直接恢复。`, "确认删除")) {
+          return;
+        }
         HZ.state.expenses.splice(index, 1);
         break;
       }

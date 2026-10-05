@@ -104,8 +104,8 @@ $(function () {
     selectType("全部");
   });
 
-  $(document).on("click", "[data-action]", function () {
-    if (HZ.changeCard(this.dataset.action, this.dataset.id)) {
+  $(document).on("click", "[data-action]", async function () {
+    if (await HZ.changeCard(this.dataset.action, this.dataset.id)) {
       showPlaces();
     }
   });

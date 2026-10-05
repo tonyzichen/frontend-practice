@@ -138,7 +138,7 @@ function makePlaceCard(place) {
 }
 
 // 首页、探索和行程页共用卡片操作，显示列表由各页面负责。
-function changeCard(action, id) {
+async function changeCard(action, id) {
   const place = HZ.place(id);
   if (!place) {
     HZ.notify("景点资料不可用，请刷新页面。", "error");
@@ -147,6 +147,13 @@ function changeCard(action, id) {
   const favorite = HZ.favorite(id);
   if (action === "favorite") {
     if (favorite) {
+      let consequence = "以后可以重新收藏。";
+      if (favorite.status === "visited") {
+        consequence = "该景点的已打卡记录也会一并移除。";
+      }
+      if (!await HZ.confirm("取消收藏", `确定取消收藏「${place.name}」吗？\n${consequence}`, "确认取消收藏")) {
+        return false;
+      }
       for (let index = 0; index < HZ.state.favorites.length; index++) {
         if (HZ.state.favorites[index].placeId === id) {
           HZ.state.favorites.splice(index, 1);
