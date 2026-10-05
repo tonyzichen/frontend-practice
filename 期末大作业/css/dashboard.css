@@ -9,6 +9,26 @@
   max-width: 200px;
 }
 
+.data-table {
+  width: 100%;
+  margin-top: 14px;
+}
+
+.data-table caption {
+  caption-side: top;
+  color: var(--muted);
+}
+
+.data-table th,
+.data-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+#flow-data summary {
+  cursor: pointer;
+}
+
 @media (max-width: 600px) {
   .chart {
     height: 300px;

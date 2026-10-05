@@ -156,6 +156,19 @@ $(function () {
         flow.periodLabel +
         "。不用于预测真实客流。",
     );
+    // 文字摘要和表格与图表共用同一组数值，图表库不可用时仍可阅读。
+    $("#flow-chart-note").text(
+      `${flow.series[0].category}：${flow.months.length} 个月客流合计 ${total.toLocaleString()} 万人次，月均 ${(total / counts.length).toFixed(1)} 万人次；峰值为 ${maxMonth}，${max} 万人次。完整数值见下方月度客流数据表。`,
+    );
+    let tableRows = "";
+    for (let index = 0; index < flow.months.length; index++) {
+      tableRows += `<tr><th scope="row">${HZ.escape(flow.months[index])}</th><td>${counts[index]}</td></tr>`;
+    }
+    $("#flow-table-caption").text(
+      `${flow.series[0].category}月度客流 · ${flow.periodLabel} · 课堂模拟数据`,
+    );
+    $("#flow-table-body").html(tableRows);
+    $("#flow-data").prop("hidden", false);
     updateMonth();
     barChart = getChart("spot-chart");
     lineChart = getChart("trend-chart");
@@ -225,15 +238,20 @@ $(function () {
     $("#stat-cards").empty();
     $("#chart-month").empty().prop("disabled", true);
     $("#month-note,#chart-source").empty();
+    $("#flow-chart-note").text("暂无客流文字数据。");
+    $("#flow-table-body,#flow-table-caption").empty();
+    $("#flow-data").prop("hidden", true);
   }
 
   async function loadFlow() {
     clearFlow();
     $("#dashboard-status").text("正在加载客流数据…");
+    $("#flow-chart-note").text("正在加载客流文字数据…");
     try {
       const data = await HZ.loadJson("data/visitors.json");
       if (!validateFlow(data)) {
         $("#dashboard-status").text("暂无客流数据，图表与统计已清空。");
+        $("#flow-chart-note").text("暂无客流数据。");
         return;
       }
       flow = data;
@@ -242,6 +260,7 @@ $(function () {
     } catch (error) {
       clearFlow();
       $("#dashboard-status").text(error.message);
+      $("#flow-chart-note").text("客流数据加载失败，暂时无法提供文字数据。");
     }
   }
 
@@ -289,14 +308,14 @@ $(function () {
     for (let index = 0; index < HZ.categories.length; index++) {
       const totalCents = statistics.totalsCents[index];
       amounts.push(totalCents / 100);
-      amountNotes.push(HZ.categories[index] + " " + HZ.format(totalCents));
+      amountNotes.push(HZ.categories[index] + " " + HZ.format(totalCents) + " 元");
     }
-    expenseChart = getChart("expense-chart");
     let expenseNote = "暂无消费记录，去「我的行程」记录费用。";
     if (statistics.count > 0) {
-      expenseNote = "来源：本人本地消费记录 · 元；" + amountNotes.join(" / ");
+      expenseNote = "来源：本人本地消费记录；" + amountNotes.join(" / ");
     }
     $("#expense-chart-note").text(expenseNote);
+    expenseChart = getChart("expense-chart");
     if (expenseChart) {
       expenseChart.clear();
       if (statistics.count > 0) {
@@ -334,12 +353,12 @@ $(function () {
     const want = statistics.want;
     const visited = statistics.visited;
     const count = want + visited;
-    favoriteChart = getChart("favorite-chart");
     let favoriteNote = "暂无收藏记录，去景点探索添加收藏。";
     if (count > 0) {
-      favoriteNote = `来源：本人本地收藏 · 想去 ${want} / 已打卡 ${visited}`;
+      favoriteNote = `来源：本人本地收藏 · 想去 ${want} 个 / 已打卡 ${visited} 个`;
     }
     $("#favorite-chart-note").text(favoriteNote);
+    favoriteChart = getChart("favorite-chart");
     if (favoriteChart) {
       favoriteChart.clear();
       if (count > 0) {

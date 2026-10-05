@@ -49,32 +49,49 @@
       <div class="row row-cols-1 row-cols-lg-2 g-3 mt-1">
         <div class="col">
           <article class="panel">
-            <h2>月度客流对比</h2>
-            <p class="muted">柱状图 · 单位：万人次 · 从零起轴</p>
-            <div id="spot-chart" class="chart" role="img" aria-label="西湖月度客流柱状图"></div>
+            <h2 id="spot-chart-title">月度客流对比</h2>
+            <p id="spot-chart-description" class="muted">柱状图 · 单位：万人次 · 从零起轴</p>
+            <div id="spot-chart" class="chart" role="img" aria-labelledby="spot-chart-title"
+              aria-describedby="spot-chart-description flow-chart-note month-note chart-source"></div>
           </article>
         </div>
         <div class="col">
           <article class="panel">
-            <h2>客流变化趋势</h2>
-            <p class="muted">折线图 · 单位：万人次 · 原始月份顺序</p>
-            <div id="trend-chart" class="chart" role="img" aria-label="西湖月度客流折线图"></div>
+            <h2 id="trend-chart-title">客流变化趋势</h2>
+            <p id="trend-chart-description" class="muted">折线图 · 单位：万人次 · 原始月份顺序</p>
+            <div id="trend-chart" class="chart" role="img" aria-labelledby="trend-chart-title"
+              aria-describedby="trend-chart-description flow-chart-note month-note chart-source"></div>
           </article>
         </div>
       </div>
+      <p id="flow-chart-note">正在加载客流文字数据…</p>
       <p id="chart-source" class="muted"></p>
+      <details id="flow-data" class="panel" hidden>
+        <summary>查看月度客流数据表</summary>
+        <table class="data-table">
+          <caption id="flow-table-caption"></caption>
+          <thead>
+            <tr><th scope="col">月份</th><th scope="col">客流（万人次）</th></tr>
+          </thead>
+          <tbody id="flow-table-body"></tbody>
+        </table>
+      </details>
       <div class="row row-cols-1 row-cols-lg-2 g-3 section-space">
         <div class="col">
           <article class="panel">
-            <h2>我的消费分类</h2>
-            <div id="expense-chart" class="chart"></div>
+            <h2 id="expense-chart-title">我的消费分类</h2>
+            <p id="expense-chart-description" class="muted">条形图 · 单位：元</p>
+            <div id="expense-chart" class="chart" role="img" aria-labelledby="expense-chart-title"
+              aria-describedby="expense-chart-description expense-chart-note"></div>
             <p id="expense-chart-note"></p>
           </article>
         </div>
         <div class="col">
           <article class="panel">
-            <h2>我的收藏状态</h2>
-            <div id="favorite-chart" class="chart"></div>
+            <h2 id="favorite-chart-title">我的收藏状态</h2>
+            <p id="favorite-chart-description" class="muted">环形图 · 单位：个</p>
+            <div id="favorite-chart" class="chart" role="img" aria-labelledby="favorite-chart-title"
+              aria-describedby="favorite-chart-description favorite-chart-note"></div>
             <p id="favorite-chart-note"></p>
           </article>
         </div>
